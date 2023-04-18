@@ -1,0 +1,58 @@
+[
+	{
+		"name": "brotein",
+		"rootPath": "/Users/subaanqasim/Code/brotein",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "subaanqasim.com",
+		"rootPath": "/Users/subaanqasim/Code/subaanqasim.com",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "tailwindui-spotlight",
+		"rootPath": "/Users/subaanqasim/Code/tailwindui-spotlight",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "tailwindui-pocket",
+		"rootPath": "/Users/subaanqasim/Code/tailwindui-pocket",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "tailwindui-protocol",
+		"rootPath": "/Users/subaanqasim/Code/tailwindui-protocol",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "the-london-brownery",
+		"rootPath": "/Users/subaanqasim/Code/the-london-brownery",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "hifdhtracker",
+		"rootPath": "/Users/subaanqasim/Code/hifdhtracker",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "laebaqasimcreative.com",
+		"rootPath": "/Users/subaanqasim/Code/laebaqasimcreative.com",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	}
+]
