@@ -48,7 +48,7 @@ return {
         -- "neogit",
         -- "neorg",
         "nvim-cmp",
-        -- "nvim-navic",
+        "nvim-navic",
         -- "nvim-tree",
         "nvim-web-devicons",
         -- "sneak",
@@ -75,7 +75,9 @@ return {
 
       custom_colors = function(colors) end,
 
-      custom_highlights = {}, -- Overwrite highlights with your own
+      custom_highlights = {
+        -- Overwrite highlights with your own
+      },
     },
   },
 

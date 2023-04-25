@@ -27,6 +27,8 @@ map("n", "J", "mzJ`z")
 -- move cursor to center when navigating up/down and next/prev
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
+map("n", "<C-o>", "<C-o>zz")
+map("n", "<C-i>", "<C-i>zz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
@@ -45,3 +47,7 @@ map("n", "<C-z>", "u", { noremap = true })
 map("n", "<C-y>", "<C-r>", { noremap = true })
 map("i", "<C-z>", "<C-o>u", { noremap = true })
 map("i", "<C-y>", "<C-o><C-r>", { noremap = true })
+
+-- more ergonomic tab switching
+map("n", "<leader><tab>n", ":tabnext<CR>", { noremap = true, desc = "Next tab" })
+map("n", "<leader><tab>p", ":tabprevious<CR>", { noremap = true, desc = "Previous tab" })
