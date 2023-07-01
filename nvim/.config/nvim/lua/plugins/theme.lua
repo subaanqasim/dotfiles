@@ -16,6 +16,8 @@ return {
     "marko-cerovac/material.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
+    dependencies = { "nvim-lualine/lualine.nvim" },
+
     opts = {
       contrast = {
         terminal = false, -- Enable contrast for the built-in terminal
@@ -49,7 +51,7 @@ return {
         -- "neorg",
         "nvim-cmp",
         "nvim-navic",
-        -- "nvim-tree",
+        "nvim-tree",
         "nvim-web-devicons",
         -- "sneak",
         "telescope",
