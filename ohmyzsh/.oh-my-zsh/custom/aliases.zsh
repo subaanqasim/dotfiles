@@ -1,9 +1,8 @@
 alias pn='pnpm'
+alias nvim='env TERM=wezterm nvim'
+
 hash -d nvim=/Users/subaanqasim/.config/nvim
 nvim="/Users/subaanqasim/.config/nvim"
-
-hash -d alacritty=/Users/subaanqasim/.config/alacritty
-alacritty="/Users/subaanqasim/.config/alacritty"
 
 hash -d code=/Users/subaanqasim/Code
 code="/Users/subaanqasim/Code"
