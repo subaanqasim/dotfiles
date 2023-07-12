@@ -47,8 +47,8 @@ config.font = wezterm.font_with_fallback({
 config.font_size = 16
 
 config.inactive_pane_hsb = {
-	saturation = 0.9,
-	brightness = 0.8,
+	saturation = 0.75,
+	brightness = 0.6,
 }
 
 config.keys = {
