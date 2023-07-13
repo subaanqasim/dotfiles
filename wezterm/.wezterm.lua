@@ -3,12 +3,14 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
 
-wezterm.on("update-right-status", function(window, pane)
+wezterm.on("update-status", function(window)
 	window:set_right_status(window:active_workspace())
 end)
 
 wezterm.on("gui-startup", function()
 	local tab, pane, window = mux.spawn_window({})
+
+	window:set_workspace("default")
 	-- window:gui_window():maximize()
 end)
 
@@ -20,6 +22,14 @@ local config = {}
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
+
+config.unix_domains = {
+	{
+		name = "unix",
+	},
+}
+
+config.default_gui_startup_args = { "connect", "unix" }
 
 config.color_scheme = "MaterialDarker"
 -- config.color_scheme = "Catppuccin Mocha"
@@ -94,6 +104,18 @@ config.keys = {
 			flags = "FUZZY|WORKSPACES",
 		}),
 	},
+	{
+		key = "-",
+		mods = "ALT",
+		action = act.ShowLauncherArgs({
+			flags = "FUZZY|DOMAINS",
+		}),
+	},
+	{
+		key = "=",
+		mods = "ALT",
+		action = act.ShowLauncher,
+	},
 	-- Prompt for a name to use for a new workspace and switch to it.
 	{
 		key = "n",
@@ -118,6 +140,11 @@ config.keys = {
 				end
 			end),
 		}),
+	},
+	{
+		key = "d",
+		mods = "CTRL|SHIFT|ALT",
+		action = act.DetachDomain("CurrentPaneDomain"),
 	},
 }
 
