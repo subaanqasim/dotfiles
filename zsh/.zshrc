@@ -77,8 +77,11 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git ssh-agent)
 
+# ssh
+# ssh-add --apple-load-keychain -q
+zstyle :omz:plugins:ssh-agent ssh-add-args --apple-load-keychain -q
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -133,8 +136,6 @@ export PNPM_HOME="/Users/subaanqasim/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-# ssh
-ssh-add --apple-load-keychain -q
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
