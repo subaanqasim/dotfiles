@@ -48,6 +48,8 @@ return {
           ".git",
           "--exclude",
           "node_modules",
+          "--exclude",
+          ".vercel",
         },
       },
     },
