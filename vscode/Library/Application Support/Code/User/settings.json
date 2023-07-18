@@ -182,5 +182,9 @@
   "[python]": {
     "editor.formatOnType": true
   },
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
