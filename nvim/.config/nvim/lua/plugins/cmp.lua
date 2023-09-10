@@ -4,6 +4,11 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
 
+      opts.preselect = cmp.PreselectMode.None
+      opts.completion = {
+        completeopt = "menu,menuone,noinsert,noselect",
+      }
+
       local function border(hl_name)
         return {
           { "╭", hl_name },

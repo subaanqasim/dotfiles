@@ -55,6 +55,7 @@ config.font = wezterm.font_with_fallback({
 })
 
 config.font_size = 16
+config.line_height = 1.2
 
 config.inactive_pane_hsb = {
 	saturation = 0.75,
@@ -115,6 +116,11 @@ config.keys = {
 		key = "=",
 		mods = "ALT",
 		action = act.ShowLauncher,
+	},
+	{
+		key = "h",
+		mods = "ALT",
+		action = wezterm.action.TogglePaneZoomState,
 	},
 	-- Prompt for a name to use for a new workspace and switch to it.
 	{
