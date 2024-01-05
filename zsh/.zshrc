@@ -165,7 +165,7 @@ zinit light-mode for \
 # zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 # zinit light sindresorhus/pure
 
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=50
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=100
 
 zinit wait lucid light-mode for \
   atinit"zicompinit; zicdreplay" \
