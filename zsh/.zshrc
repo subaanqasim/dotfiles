@@ -84,6 +84,7 @@ plugins=(git ssh-agent)
 zstyle :omz:plugins:ssh-agent ssh-add-args --apple-load-keychain -q
 source $ZSH/oh-my-zsh.sh
 
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -164,7 +165,7 @@ zinit light-mode for \
 # zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 # zinit light sindresorhus/pure
 
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=50
 
 zinit wait lucid light-mode for \
   atinit"zicompinit; zicdreplay" \
@@ -182,9 +183,19 @@ ZVM_VI_EDITOR=nvim
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
+zinit ice wait"2" as"command" from"gh-r" lucid \
+  mv"zoxide*/zoxide -> zoxide" \
+  atclone"./zoxide init zsh > init.zsh" \
+  atpull"%atclone" src"init.zsh" nocompile'!'
+zinit light ajeetdsouza/zoxide
+
 # nvm
 export NVM_COMPLETION=true
 # export NVM_SYMLINK_CURRENT="true"
 export NVM_AUTO_USE=true
 zinit wait lucid light-mode for lukechilds/zsh-nvm
 
+
+# bun completions
+[ -s "/Users/subaanqasim/.bun/_bun" ] && source "/Users/subaanqasim/.bun/_bun"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"

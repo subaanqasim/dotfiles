@@ -51,10 +51,11 @@ config.window_padding = {
 }
 
 config.font = wezterm.font_with_fallback({
-	"FiraCode Nerd Font Mono",
+	"GeistMono Nerd Font Mono",
+	-- "FiraCode Nerd Font Mono",
 })
 
-config.font_size = 16
+config.font_size = 16.5
 config.line_height = 1.2
 
 config.inactive_pane_hsb = {

@@ -8,7 +8,9 @@ end
 return {
   {
     "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
     opts = {
+      ---@type lspconfig.options
       servers = {
         astro = {},
         -- astro = {
@@ -34,7 +36,19 @@ return {
         -- },
         volar = {},
         prismals = {},
-        tailwindcss = {},
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              experimental = {
+                classRegex = {
+                  { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                  { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                  { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                },
+              },
+            },
+          },
+        },
         bufls = {},
       },
       setup = {
