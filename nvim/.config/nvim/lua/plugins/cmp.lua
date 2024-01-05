@@ -9,19 +9,6 @@ return {
         completeopt = "menu,menuone,noinsert,noselect",
       }
 
-      local function border(hl_name)
-        return {
-          { "╭", hl_name },
-          { "─", hl_name },
-          { "╮", hl_name },
-          { "│", hl_name },
-          { "╯", hl_name },
-          { "─", hl_name },
-          { "╰", hl_name },
-          { "│", hl_name },
-        }
-      end
-
       opts.mapping = cmp.mapping.preset.insert({
         ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -36,13 +23,28 @@ return {
         }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       })
 
+      -- local function border(hl_name)
+      --   return {
+      --     { "╭", hl_name },
+      --     { "─", hl_name },
+      --     { "╮", hl_name },
+      --     { "│", hl_name },
+      --     { "╯", hl_name },
+      --     { "─", hl_name },
+      --     { "╰", hl_name },
+      --     { "│", hl_name },
+      --   }
+      -- end
+
       opts.window = {
-        completion = {
-          border = border("CmpBorder"),
-        },
-        documentation = {
-          border = border("CmpDocBorder"),
-        },
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+        -- completion = {
+        --   border = border("CmpBorder"),
+        -- },
+        -- documentation = {
+        --   border = border("CmpDocBorder"),
+        -- },
       }
     end,
   },
