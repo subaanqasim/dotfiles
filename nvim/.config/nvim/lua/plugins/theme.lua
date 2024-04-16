@@ -3,7 +3,7 @@ return {
     "marko-cerovac/material.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
-    dependencies = { "nvim-lualine/lualine.nvim" },
+    dependencies = { "nvim-lualine/lualine.nvim", "f-person/auto-dark-mode.nvim" },
 
     opts = {
       contrast = {
@@ -51,7 +51,7 @@ return {
       },
 
       high_visibility = {
-        lighter = false, -- Enable higher contrast text for lighter style
+        lighter = true, -- Enable higher contrast text for lighter style
         darker = false, -- Enable higher contrast text for darker style
       },
 
@@ -65,6 +65,21 @@ return {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "material",
+    },
+  },
+
+  {
+    "f-person/auto-dark-mode.nvim",
+    config = {
+      update_interval = 1000,
+      set_dark_mode = function()
+        vim.api.nvim_set_option("background", "dark")
+        require("material.functions").change_style("darker")
+      end,
+      set_light_mode = function()
+        vim.api.nvim_set_option("background", "light")
+        require("material.functions").change_style("lighter")
+      end,
     },
   },
 }

@@ -1,0 +1,40 @@
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[core]
+	pager = less -F -X
+	; editor = code --wait --new-window
+	editor = nvim
+[diff]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --new-window --diff $LOCAL $REMOTE
+[merge]
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --wait --new-window $MERGED
+[pull]
+	rebase = true
+
+; set up personal ssh, gh auth etc.
+[include]
+path = ~/.gitconfig-personal
+ 
+; override personal ssh, gh auth etc. with work settings
+[includeIf "gitdir:~/Code/sina-health/**"]
+path = ~/.gitconfig-sinahealth
+

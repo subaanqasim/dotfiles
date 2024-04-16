@@ -1,0 +1,10 @@
+[user]
+email = subaan@sinahealth.tech
+name = Subaan Qasim
+signingkey = /Users/subaanqasim/.ssh/subaan-sh
+ 
+[github]
+user = "subaan-sh"
+ 
+[core]
+sshCommand = "ssh -i ~/.ssh/subaan-sh"

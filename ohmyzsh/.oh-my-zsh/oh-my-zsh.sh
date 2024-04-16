@@ -1,14 +1,14 @@
+# ANSI formatting function (\033[<code>m)
+# 0: reset, 1: bold, 4: underline, 22: no bold, 24: no underline, 31: red, 33: yellow
+omz_f() {
+  [ $# -gt 0 ] || return
+  IFS=";" printf "\033[%sm" $*
+}
+# If stdout is not a terminal ignore all formatting
+[ -t 1 ] || omz_f() { :; }
+
 # Protect against non-zsh execution of Oh My Zsh (use POSIX syntax here)
 [ -n "$ZSH_VERSION" ] || {
-  # ANSI formatting function (\033[<code>m)
-  # 0: reset, 1: bold, 4: underline, 22: no bold, 24: no underline, 31: red, 33: yellow
-  omz_f() {
-    [ $# -gt 0 ] || return
-    IFS=";" printf "\033[%sm" $*
-  }
-  # If stdout is not a terminal ignore all formatting
-  [ -t 1 ] || omz_f() { :; }
-
   omz_ptree() {
     # Get process tree of the current process
     pid=$$; pids="$pid"
@@ -37,6 +37,15 @@
 
   return 1
 }
+
+# Check if in emulation mode, if so early return
+# https://github.com/ohmyzsh/ohmyzsh/issues/11686
+[[ "$(emulate)" = zsh ]] || {
+  printf "$(omz_f 1 31)Error:$(omz_f 22) Oh My Zsh can't be loaded in \`$(emulate)\` emulation mode.$(omz_f 0)\n" >&2
+  return 1
+}
+
+unset -f omz_f
 
 # If ZSH is not defined, use the current script's directory.
 [[ -z "$ZSH" ]] && export ZSH="${${(%):-%x}:a:h}"
@@ -143,7 +152,7 @@ unset zcompdump_revision zcompdump_fpath zcompdump_refresh
 # zcompile the completion dump file if the .zwc is older or missing.
 if command mkdir "${ZSH_COMPDUMP}.lock" 2>/dev/null; then
   zrecompile -q -p "$ZSH_COMPDUMP"
-  command rm -rf "$ZSH_COMPDUMP.zwc.old" "${ZSH_COMPDUMP}.lock" 
+  command rm -rf "$ZSH_COMPDUMP.zwc.old" "${ZSH_COMPDUMP}.lock"
 fi
 
 _omz_source() {
@@ -159,10 +168,10 @@ _omz_source() {
   zstyle -T ":omz:${context}" aliases || disable_aliases=1
 
   # Back up alias names prior to sourcing
-  local -a aliases_pre galiases_pre
+  local -A aliases_pre galiases_pre
   if (( disable_aliases )); then
-    aliases_pre=("${(@k)aliases}")
-    galiases_pre=("${(@k)galiases}")
+    aliases_pre=("${(@kv)aliases}")
+    galiases_pre=("${(@kv)galiases}")
   fi
 
   # Source file from $ZSH_CUSTOM if it exists, otherwise from $ZSH
@@ -174,19 +183,25 @@ _omz_source() {
 
   # Unset all aliases that don't appear in the backed up list of aliases
   if (( disable_aliases )); then
-    local -a disabled
-    # ${var:|array} gets the list of items in var not in array
-    disabled=("${(@k)aliases:|aliases_pre}" "${(@k)galiases:|galiases_pre}")
-    (( $#disabled == 0 )) || unalias "${(@)disabled}"
+    if (( #aliases_pre )); then
+      aliases=("${(@kv)aliases_pre}")
+    else
+      (( #aliases )) && unalias "${(@k)aliases}"
+    fi
+    if (( #galiases_pre )); then
+      galiases=("${(@kv)galiases_pre}")
+    else
+      (( #galiases )) && unalias "${(@k)galiases}"
+    fi
   fi
 }
 
-# Load all of the config files in ~/oh-my-zsh that end in .zsh
+# Load all of the lib files in ~/oh-my-zsh/lib that end in .zsh
 # TIP: Add files you don't want in git to .gitignore
-for config_file ("$ZSH"/lib/*.zsh); do
-  _omz_source "lib/${config_file:t}"
+for lib_file ("$ZSH"/lib/*.zsh); do
+  _omz_source "lib/${lib_file:t}"
 done
-unset custom_config_file
+unset lib_file
 
 # Load all of the plugins that were defined in ~/.zshrc
 for plugin ($plugins); do

@@ -1,0 +1,10 @@
+[user]
+email = subaan.qasim@gmail.com
+name = Subaan Qasim
+signingkey = /Users/subaanqasim/.ssh/subaanqasim
+ 
+[github]
+user = "subaanqasim"
+ 
+[core]
+sshCommand = "ssh -i ~/.ssh/subaanqasim"

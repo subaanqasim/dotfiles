@@ -31,7 +31,25 @@ config.unix_domains = {
 
 config.default_gui_startup_args = { "connect", "unix" }
 
-config.color_scheme = "MaterialDarker"
+-- wezterm.gui is not available to the mux server, so take care to
+-- do something reasonable when this config is evaluated by the mux
+local function get_appearance()
+	if wezterm.gui then
+		return wezterm.gui.get_appearance()
+	end
+	return "Dark"
+end
+
+local function scheme_for_appearance(appearance)
+	if appearance:find("Dark") then
+		return "MaterialDarker"
+	else
+		return "Material Lighter (base16)"
+	end
+end
+
+config.color_scheme = scheme_for_appearance(get_appearance())
+-- config.color.scheme = "MaterialDarker"
 -- config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "Catppuccin L
 
