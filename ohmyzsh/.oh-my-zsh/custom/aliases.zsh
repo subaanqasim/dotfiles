@@ -8,6 +8,8 @@ alias f="fzf"
 alias hf="history | fzf"
 # alias cd="z"
 alias zz="z -"
+alias python="python3"
+alias pip="pip3"
 
 hash -d nvim=/Users/subaanqasim/.config/nvim
 nvim="/Users/subaanqasim/.config/nvim"

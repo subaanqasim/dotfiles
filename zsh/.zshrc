@@ -83,7 +83,12 @@ plugins=(git ssh-agent)
 # ssh-add --apple-load-keychain -q
 zstyle :omz:plugins:ssh-agent ssh-add-args --apple-load-keychain -q
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
 source $ZSH/oh-my-zsh.sh
+
+autoload bashcompinit && bashcompinit
+source $(brew --prefix)/etc/bash_completion.d/az
+
 
 
 # User configuration
@@ -182,9 +187,10 @@ zinit wait lucid light-mode for lukechilds/zsh-nvm
 
 # bun completions
 [ -s "/Users/subaanqasim/.bun/_bun" ] && source "/Users/subaanqasim/.bun/_bun"
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/Users/subaanqasim/.cargo/bin":$PATH
 
-autoload bashcompinit && bashcompinit
-source $(brew --prefix)/etc/bash_completion.d/az
+
+# Created by `pipx` on 2024-04-19 13:51:30
+export PATH="$PATH:/Users/subaanqasim/.local/bin"

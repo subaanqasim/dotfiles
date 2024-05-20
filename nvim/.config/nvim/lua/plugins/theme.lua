@@ -51,7 +51,7 @@ return {
       },
 
       high_visibility = {
-        lighter = true, -- Enable higher contrast text for lighter style
+        lighter = false, -- Enable higher contrast text for lighter style
         darker = false, -- Enable higher contrast text for darker style
       },
 
@@ -73,11 +73,11 @@ return {
     config = {
       update_interval = 1000,
       set_dark_mode = function()
-        vim.api.nvim_set_option("background", "dark")
+        vim.api.nvim_set_option_value("background", "dark", { scope = "global" })
         require("material.functions").change_style("darker")
       end,
       set_light_mode = function()
-        vim.api.nvim_set_option("background", "light")
+        vim.api.nvim_set_option_value("background", "light", { scope = "global" })
         require("material.functions").change_style("lighter")
       end,
     },

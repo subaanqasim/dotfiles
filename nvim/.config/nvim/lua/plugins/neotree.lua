@@ -21,7 +21,7 @@ return {
         require("neo-tree.command").execute({
           toggle = true,
           -- dir = vim.loop.cwd()
-          dir = require("lazyvim.util").get_root(),
+          dir = LazyVim.root.get(),
         })
       end,
       desc = "Explorer NeoTree (root dir)",
