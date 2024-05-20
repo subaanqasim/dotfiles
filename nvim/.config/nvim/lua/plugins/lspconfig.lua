@@ -5,6 +5,9 @@ return {
     opts = {
       ---@type lspconfig.options
       inlay_hints = { enabled = false },
+      document_highlight = {
+        enabled = false,
+      },
       servers = {
         astro = {},
         volar = {},
