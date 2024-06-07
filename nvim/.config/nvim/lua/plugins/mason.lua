@@ -13,7 +13,6 @@ return {
         "stylua",
         "tailwindcss-language-server",
         "astro-language-server",
-        "vue-language-server",
         "json-lsp",
         "shfmt",
         "prisma-language-server",

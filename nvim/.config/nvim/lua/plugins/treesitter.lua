@@ -7,7 +7,6 @@ return {
         vim.list_extend(opts.ensure_installed, {
           "astro",
           "prisma",
-          "vue",
           "bash",
           "c",
           "html",

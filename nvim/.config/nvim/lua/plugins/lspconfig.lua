@@ -9,8 +9,6 @@ return {
         enabled = false,
       },
       servers = {
-        astro = {},
-        volar = {},
         prismals = {},
         tailwindcss = {
           settings = {

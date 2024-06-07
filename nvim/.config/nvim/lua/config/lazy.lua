@@ -25,6 +25,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.coding.copilot" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
+    { import = "lazyvim.plugins.extras.lang.astro" },
     { import = "lazyvim.plugins.extras.dap.core" },
     -- { import = "lazyvim.plugins.extras.editor.symbols-outline" },
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
