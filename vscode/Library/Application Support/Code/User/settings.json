@@ -136,7 +136,7 @@
     "editor.defaultFormatter": "Prisma.prisma"
   },
   "notebook.lineNumbers": "on",
-  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "workbench.colorTheme": "Material Theme Lighter High Contrast",
   "window.autoDetectColorScheme": true,
   "editor.fontLigatures": true,
   "editor.stickyScroll.enabled": true,
