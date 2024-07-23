@@ -10,6 +10,8 @@ alias hf="history | fzf"
 alias zz="z -"
 alias python="python3"
 alias pip="pip3"
+alias dn="dotnet"
+alias pu="pulumi"
 
 hash -d nvim=/Users/subaanqasim/.config/nvim
 nvim="/Users/subaanqasim/.config/nvim"

@@ -1,3 +1,4 @@
+local lspconfig = require("lspconfig")
 return {
   {
     "neovim/nvim-lspconfig",
@@ -26,6 +27,12 @@ return {
           },
         },
         bufls = {},
+        -- eslint = {
+        --   settings = {
+        --     workingDirectory = { mode = "location" },
+        --   },
+        --   root_dir = lspconfig.util.find_git_ancestor,
+        -- },
       },
       setup = {
         eslint = function() end, -- disable autofix on save by LazyVim

@@ -194,3 +194,4 @@ export PATH="/Users/subaanqasim/.cargo/bin":$PATH
 
 # Created by `pipx` on 2024-04-19 13:51:30
 export PATH="$PATH:/Users/subaanqasim/.local/bin"
+. "/Users/subaanqasim/.acme.sh/acme.sh.env"
