@@ -26,6 +26,7 @@ return {
           "vimdoc",
           "yaml",
           "proto",
+          -- "sql",
         })
       end
     end,

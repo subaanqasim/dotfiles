@@ -42,16 +42,14 @@ end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "MaterialDarker"
+		return "Tokyo Night"
 	else
-		return "Material Lighter (base16)"
+		return "Tokyo Night Day"
 	end
 end
 
 config.color_scheme = scheme_for_appearance(get_appearance())
--- config.color.scheme = "MaterialDarker"
--- config.color_scheme = "Catppuccin Mocha"
--- config.color_scheme = "Catppuccin L
+-- config.color_scheme = "Tokyo Night"
 
 config.scrollback_lines = 7500
 config.use_fancy_tab_bar = false

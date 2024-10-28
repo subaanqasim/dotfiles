@@ -12,6 +12,7 @@ alias python="python3"
 alias pip="pip3"
 alias dn="dotnet"
 alias pu="pulumi"
+alias lg="lazygit"
 
 hash -d nvim=/Users/subaanqasim/.config/nvim
 nvim="/Users/subaanqasim/.config/nvim"
