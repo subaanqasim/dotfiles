@@ -30,6 +30,7 @@ config.unix_domains = {
 }
 
 config.default_gui_startup_args = { "connect", "unix" }
+config.term = "wezterm"
 
 -- wezterm.gui is not available to the mux server, so take care to
 -- do something reasonable when this config is evaluated by the mux

@@ -168,6 +168,10 @@ zinit wait lucid light-mode for \
 # https://github.com/jeffreytse/zsh-vi-mode
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
+# ZVM_CURSOR_STYLE_ENABLED=false
+# ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
+# ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+# ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
 ZVM_VI_EDITOR=nvim
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
@@ -188,12 +192,15 @@ zinit wait lucid light-mode for lukechilds/zsh-nvm
 # bun completions
 [ -s "/Users/subaanqasim/.bun/_bun" ] && source "/Users/subaanqasim/.bun/_bun"
 
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+# export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/Users/subaanqasim/.cargo/bin":$PATH
-
-
-# Created by `pipx` on 2024-04-19 13:51:30
 export PATH="$PATH:/Users/subaanqasim/.local/bin"
 . "/Users/subaanqasim/.acme.sh/acme.sh.env"
 export PATH=$PATH:$HOME/go/bin
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+
+
+# Created by `pipx` on 2024-04-19 13:51:30
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
