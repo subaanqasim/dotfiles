@@ -2,6 +2,7 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
+-- local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
 wezterm.on("update-status", function(window)
 	window:set_right_status(window:active_workspace())
@@ -14,14 +15,9 @@ wezterm.on("gui-startup", function()
 	-- window:gui_window():maximize()
 end)
 
--- This table will hold the configuration.
-local config = {}
-
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
-if wezterm.config_builder then
-	config = wezterm.config_builder()
-end
+local config = wezterm.config_builder()
 
 config.unix_domains = {
 	{
@@ -80,7 +76,54 @@ config.inactive_pane_hsb = {
 	brightness = 0.6,
 }
 
+local function is_vim(pane)
+	-- this is set by the plugin, and unset on ExitPre in Neovim
+	return pane:get_user_vars().IS_NVIM == "true"
+end
+
+local direction_keys = {
+	h = "Left",
+	j = "Down",
+	k = "Up",
+	l = "Right",
+	LeftArrow = "Left",
+	DownArrow = "Down",
+	UpArrow = "Up",
+	RightArrow = "Right",
+}
+
+local function smart_split_nav(resize_or_move, key)
+	return {
+		key = key,
+		mods = resize_or_move == "resize" and "META" or "CTRL",
+		action = wezterm.action_callback(function(win, pane)
+			if is_vim(pane) then
+				-- pass the keys through to vim/nvim
+				win:perform_action({
+					SendKey = { key = key, mods = resize_or_move == "resize" and "META" or "CTRL" },
+				}, pane)
+			else
+				if resize_or_move == "resize" then
+					win:perform_action({ AdjustPaneSize = { direction_keys[key], 3 } }, pane)
+				else
+					win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
+				end
+			end
+		end),
+	}
+end
+
 config.keys = {
+	-- move between split panes
+	smart_split_nav("move", "h"),
+	smart_split_nav("move", "j"),
+	smart_split_nav("move", "k"),
+	smart_split_nav("move", "l"),
+	-- resize panes
+	-- smart_split_nav("resize", "LeftArrow"),
+	-- smart_split_nav("resize", "DownArrow"),
+	-- smart_split_nav("resize", "UpArrow"),
+	-- smart_split_nav("resize", "RightArrow"),
 	-- This will create a new split and run your default program inside it
 	{
 		key = "d",
@@ -171,6 +214,27 @@ config.keys = {
 		action = act.DetachDomain("CurrentPaneDomain"),
 	},
 }
+
+-- https://github.com/mrjones2014/smart-splits.nvim?tab=readme-ov-file#wezterm
+-- smart_splits.apply_to_config(config, {
+-- 	-- the default config is here, if you'd like to use the default keys,
+-- 	-- you can omit this configuration table parameter and just use
+-- 	-- smart_splits.apply_to_config(config)
+--
+-- 	-- directional keys to use in order of: left, down, up, right
+-- 	-- direction_keys = { 'h', 'j', 'k', 'l' },
+-- 	-- if you want to use separate direction keys for move vs. resize, you
+-- 	-- can also do this:
+-- 	direction_keys = {
+-- 		move = { "h", "j", "k", "l" },
+-- 		resize = { "LeftArrow", "DownArrow", "UpArrow", "RightArrow" },
+-- 	},
+-- 	-- modifier keys to combine with direction_keys
+-- 	modifiers = {
+-- 		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
+-- 		resize = "CTRL", -- modifier to use for pane resize, e.g. CTRL+LeftArrow to resize to the left
+-- 	},
+-- })
 
 -- and finally, return the configuration to wezterm
 return config
