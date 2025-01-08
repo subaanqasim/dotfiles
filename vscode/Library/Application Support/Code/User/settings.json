@@ -189,5 +189,6 @@
   },
   "[csharp]": {
     "editor.maxTokenizationLineLength": 2500
-  }
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }

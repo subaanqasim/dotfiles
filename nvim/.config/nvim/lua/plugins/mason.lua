@@ -4,7 +4,6 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "prettierd",
-        -- "eslint-lsp@4.8.0",
         "typescript-language-server",
         "lua-language-server",
         "css-lsp",

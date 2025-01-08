@@ -13,8 +13,8 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
-map("n", "<leader>sx", require("telescope.builtin").resume, { noremap = true, silent = true, desc = "Resume search" })
-map("n", "<leader>zz", require("zen-mode").toggle, { noremap = true, desc = "Zen mode" })
+-- map("n", "<leader>sx", require("telescope.builtin").resume, { noremap = true, silent = true, desc = "Resume search" })
+-- map("n", "<leader>zz", require("zen-mode").toggle, { noremap = true, desc = "Zen mode" })
 
 -- quicker to enter normal mode
 map("i", "jj", "<esc>", { noremap = true, silent = true })

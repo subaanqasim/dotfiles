@@ -41,3 +41,5 @@ path = ~/.gitconfig-sinahealth
 [alias]
 	pr = "!f() { exec az repos pr \"$@\"; }; f"
 	repo = "!f() { exec az repos \"$@\"; }; f"
+[rebase]
+	updateRefs = true
