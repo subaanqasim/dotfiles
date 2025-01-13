@@ -21,3 +21,10 @@ opt.conceallevel = 0
 
 -- vim.g.lazyvim_python_lsp = "pyright"
 -- vim.g.lazyvim_python_ruff = "ruff_lsp"
+
+-- adds yaml.github filetype for gh-actions-language-server
+vim.filetype.add({
+  pattern = {
+    [".*/%.github[%w/]+workflows[%w/]+.*%.ya?ml"] = "yaml.github",
+  },
+})

@@ -33,6 +33,7 @@ return {
         --   },
         --   root_dir = lspconfig.util.find_git_ancestor,
         -- },
+        gh_actions_ls = {},
       },
       setup = {
         eslint = function() end, -- disable autofix on save by LazyVim
