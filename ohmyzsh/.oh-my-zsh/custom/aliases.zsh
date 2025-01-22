@@ -1,4 +1,5 @@
 alias pn='pnpm'
+alias pnx='pnpm dlx'
 alias nvim='env TERM=wezterm nvim'
 alias ls="eza"
 alias ll="eza -alh"
