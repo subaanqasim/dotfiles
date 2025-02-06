@@ -27,12 +27,6 @@ return {
           },
         },
         bufls = {},
-        -- eslint = {
-        --   settings = {
-        --     workingDirectory = { mode = "location" },
-        --   },
-        --   root_dir = lspconfig.util.find_git_ancestor,
-        -- },
         gh_actions_ls = {},
       },
       setup = {

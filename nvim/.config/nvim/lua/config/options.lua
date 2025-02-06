@@ -4,6 +4,9 @@
 
 vim.g.snacks_animate = false
 
+vim.lsp.set_log_level("off")
+-- vim.lsp.set_log_level("debug")
+
 -- vim.opt.winbar = "%=%m %f"
 vim.g.material_style = "darker"
 
