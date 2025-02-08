@@ -28,9 +28,22 @@ return {
         },
         bufls = {},
         gh_actions_ls = {},
-      },
-      setup = {
-        eslint = function() end, -- disable autofix on save by LazyVim
+        eslint = {
+          settings = {
+            workingDirectories = {
+              mode = "location",
+            },
+            -- root_dir = lspconfig.util.root_pattern(".git", "package.json", "tsconfig.json"),
+            flags = {
+              allow_incremental_sync = false,
+              debounce_text_changes = 1000,
+            },
+            -- flags = os.getenv("DEBOUNCE_ESLINT") and {
+            --   allow_incremental_sync = false,
+            --   debounce_text_changes = 1000,
+            -- } or nil,
+          },
+        },
       },
     },
   },
