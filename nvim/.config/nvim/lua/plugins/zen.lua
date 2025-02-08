@@ -3,6 +3,7 @@ return {
     "folke/snacks.nvim",
     ---@class snacks.Config
     opts = {
+
       styles = {
         zen = {
           backdrop = {
