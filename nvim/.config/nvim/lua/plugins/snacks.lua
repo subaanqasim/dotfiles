@@ -30,6 +30,11 @@ return {
           hidden = true,
           ignored = true,
           -- follow = true,
+          jump = { close = true },
+          layout = {
+            preset = "dropdown",
+            preview = false,
+          },
         },
       },
     },
