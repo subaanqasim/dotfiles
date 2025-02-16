@@ -1,5 +1,5 @@
 return {
-  -- "nvim-neo-tree/neo-tree.nvim",
+  "nvim-neo-tree/neo-tree.nvim",
   -- keys = {
   --   {
   --     "<leader>fe",
@@ -30,31 +30,31 @@ return {
   --   { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
   --   { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
   -- },
-  -- opts = {
-  --   filesystem = {
-  --     filtered_items = {
-  --       visible = true,
-  --       hide_dotfiles = false,
-  --       hide_gitignored = false,
-  --     },
-  --     bind_to_cwd = false,
-  --     cwd_target = {
-  --       sidebar = "global", -- sidebar is when position = left or right
-  --       current = "none", -- current is when position = current
-  --     },
-  --     find_args = { -- you can specify extra args to pass to the find command.
-  --       fd = {
-  --         "--exclude",
-  --         ".git",
-  --         "--exclude",
-  --         "node_modules",
-  --         "--exclude",
-  --         ".vercel",
-  --       },
-  --     },
-  --   },
-  --   window = {
-  --     width = 30,
-  --   },
-  -- },
+  opts = {
+    filesystem = {
+      filtered_items = {
+        visible = true,
+        hide_dotfiles = false,
+        hide_gitignored = false,
+      },
+      bind_to_cwd = false,
+      cwd_target = {
+        sidebar = "global", -- sidebar is when position = left or right
+        current = "none", -- current is when position = current
+      },
+      find_args = { -- you can specify extra args to pass to the find command.
+        fd = {
+          "--exclude",
+          ".git",
+          "--exclude",
+          "node_modules",
+          "--exclude",
+          ".vercel",
+        },
+      },
+    },
+    -- window = {
+    --   width = 30,
+    -- },
+  },
 }

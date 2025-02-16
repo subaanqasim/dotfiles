@@ -26,16 +26,16 @@ return {
         grep = {
           hidden = true,
         },
-        explorer = {
-          hidden = true,
-          ignored = true,
-          -- follow = true,
-          jump = { close = true },
-          layout = {
-            preset = "dropdown",
-            preview = false,
-          },
-        },
+        -- explorer = {
+        --   hidden = true,
+        --   ignored = true,
+        --   -- follow = true,
+        --   jump = { close = false },
+        --   layout = {
+        --     preset = "sidebar",
+        --     preview = false,
+        --   },
+        -- },
       },
     },
   },
