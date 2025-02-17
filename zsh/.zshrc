@@ -206,3 +206,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 export ANTHROPIC_API_KEY=$(pass show anthropic/api-key)
+export TAVILY_API_KEY=$(pass show tavily/api-key)
