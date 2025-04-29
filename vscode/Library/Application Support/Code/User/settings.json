@@ -190,5 +190,6 @@
   "[csharp]": {
     "editor.maxTokenizationLineLength": 2500
   },
-  "typescript.updateImportsOnFileMove.enabled": "always"
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "python.defaultInterpreterPath": "/Users/subaanqasim/.pyenv/versions/3.11.0/envs/menza"
 }

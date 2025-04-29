@@ -19,14 +19,28 @@
 	pager = less -F -X
 	; editor = code --wait --new-window
 	editor = nvim
+; [diff]
+;   tool = vscode
+; [difftool "vscode"]
+;   cmd = code --wait --new-window --diff $LOCAL $REMOTE
 [diff]
-  tool = vscode
-[difftool "vscode"]
-  cmd = code --wait --new-window --diff $LOCAL $REMOTE
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+; [merge]
+;   tool = vscode
+; [mergetool "vscode"]
+;   cmd = code --wait --new-window $MERGED
 [merge]
-  tool = vscode
-[mergetool "vscode"]
-  cmd = code --wait --new-window $MERGED
+    tool = nvimdiff
+[mergetool]
+    prompt = true
+[mergetool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\""
+    ; cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c 'wincmd w' -c 'wincmd J'"
+
 [pull]
 	rebase = true
 

@@ -207,3 +207,5 @@ eval "$(pyenv init -)"
 
 export ANTHROPIC_API_KEY=$(pass show anthropic/api-key)
 export TAVILY_API_KEY=$(pass show tavily/api-key)
+export GROQ_API_KEY=$(pass show groq/api-key-menza)
+export GEMINI_API_KEY=$(pass show gemini/api-key-menza)
