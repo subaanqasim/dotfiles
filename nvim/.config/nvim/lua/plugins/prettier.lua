@@ -60,7 +60,7 @@ M.has_parser = LazyVim.memoize(M.has_parser)
 
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = { ensure_installed = { "prettierd" } },
   },
 

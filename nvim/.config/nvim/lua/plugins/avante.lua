@@ -9,48 +9,71 @@ return {
       "MunifTanjim/nui.nvim",
     },
     opts = {
+      mode = "legacy",
+      -- mode = "agentic",
       ---@alias AvanteProvider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-      -- provider = "claude", -- Recommend using Claude
-      provider = "gemini",
-      auto_suggestions_provider = "gemini",
+      provider = "claude",
+      -- provider = "gemini",
+      auto_suggestions_provider = nil,
+      -- auto_suggestions_provider = "gemini",
       -- auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-      claude = {
-        endpoint = "https://api.anthropic.com",
-        model = "claude-3-5-sonnet-20241022",
-        -- model = "claude-3-7-sonnet-20250219",
-        temperature = 0,
-        max_completion_tokens = 8192,
-      },
 
-      gemini = {
-        model = "gemini-2.5-pro-preview-03-25",
-      },
+      -- disabled_tools = {
+      --   "replace_in_file",
+      -- },
 
-      behaviour = {
-        enable_cursor_planning_mode = true,
-        -- enable_claude_text_editor_tool_mode = true,
-        enable_token_counting = true,
-        minimize_diff = true,
-      },
+      providers = {
+        claude = {
+          endpoint = "https://api.anthropic.com",
+          -- model = "claude-3-5-sonnet-20241022",
+          -- model = "claude-3-7-sonnet-20250219",
+          model = "claude-sonnet-4-20250514",
+          extra_request_body = {
+            temperature = 0,
+            -- max_tokens = 8192,
+            max_tokens = 64000,
+            thinking = {
+              type = "disabled",
+            },
+          },
+        },
 
-      cursor_applying_provider = "groq",
+        gemini = {
+          model = "gemini-2.5-pro-preview-03-25",
+          extra_request_body = {
+            max_tokens = 65536,
+            generationConfig = {
+              thinkingConfig = {
+                includeThoughts = false,
+                thinkingBudget = 0,
+              },
+            },
+          },
+        },
 
-      vendors = {
         groq = {
           __inherited_from = "openai",
           api_key_name = "GROQ_API_KEY",
           endpoint = "https://api.groq.com/openai/v1/",
           -- model = "qwen-2.5-coder-32b",
           model = "llama-3.3-70b-versatile",
-          max_completion_tokens = 32768, -- 8192,
+          disable_tools = true,
+          extra_request_body = {
+            max_tokens = 32768, -- 8192,
+          },
         },
+      },
+
+      behaviour = {
+        enable_token_counting = true,
+        minimize_diff = true,
       },
 
       web_search_engine = {
         provider = "tavily",
       },
 
-      hints = { enabled = true },
+      hints = { enabled = false },
 
       -- behaviour = {
       --   auto_suggestions = true, -- Experimental stage

@@ -5,7 +5,7 @@
 vim.g.snacks_animate = false
 
 vim.lsp.set_log_level("off")
--- vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("info")
 
 vim.g.lazyvim_eslint_auto_format = false
 

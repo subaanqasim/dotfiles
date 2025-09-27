@@ -15,6 +15,7 @@ alias dn="dotnet"
 alias pu="pulumi"
 alias lg="lazygit"
 alias nr="npm run"
+alias oc="opencode"
 
 hash -d nvim=/Users/subaanqasim/.config/nvim
 nvim="/Users/subaanqasim/.config/nvim"

@@ -192,8 +192,8 @@ zinit wait lucid light-mode for lukechilds/zsh-nvm
 # bun completions
 [ -s "/Users/subaanqasim/.bun/_bun" ] && source "/Users/subaanqasim/.bun/_bun"
 
-# export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+# export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/Users/subaanqasim/.cargo/bin":$PATH
 export PATH="$PATH:/Users/subaanqasim/.local/bin"
 . "/Users/subaanqasim/.acme.sh/acme.sh.env"
@@ -209,3 +209,6 @@ export ANTHROPIC_API_KEY=$(pass show anthropic/api-key)
 export TAVILY_API_KEY=$(pass show tavily/api-key)
 export GROQ_API_KEY=$(pass show groq/api-key-menza)
 export GEMINI_API_KEY=$(pass show gemini/api-key-menza)
+
+# opencode
+export PATH=/Users/subaanqasim/.opencode/bin:$PATH
