@@ -1,150 +1,150 @@
 return {
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-    opts = {
-      mode = "legacy",
-      -- mode = "agentic",
-      ---@alias AvanteProvider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-      provider = "claude",
-      -- provider = "gemini",
-      auto_suggestions_provider = nil,
-      -- auto_suggestions_provider = "gemini",
-      -- auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-
-      -- disabled_tools = {
-      --   "replace_in_file",
-      -- },
-
-      providers = {
-        claude = {
-          endpoint = "https://api.anthropic.com",
-          -- model = "claude-3-5-sonnet-20241022",
-          -- model = "claude-3-7-sonnet-20250219",
-          model = "claude-sonnet-4-20250514",
-          extra_request_body = {
-            temperature = 0,
-            -- max_tokens = 8192,
-            max_tokens = 64000,
-            thinking = {
-              type = "disabled",
-            },
-          },
-        },
-
-        gemini = {
-          model = "gemini-2.5-pro-preview-03-25",
-          extra_request_body = {
-            max_tokens = 65536,
-            generationConfig = {
-              thinkingConfig = {
-                includeThoughts = false,
-                thinkingBudget = 0,
-              },
-            },
-          },
-        },
-
-        groq = {
-          __inherited_from = "openai",
-          api_key_name = "GROQ_API_KEY",
-          endpoint = "https://api.groq.com/openai/v1/",
-          -- model = "qwen-2.5-coder-32b",
-          model = "llama-3.3-70b-versatile",
-          disable_tools = true,
-          extra_request_body = {
-            max_tokens = 32768, -- 8192,
-          },
-        },
-      },
-
-      behaviour = {
-        enable_token_counting = true,
-        minimize_diff = true,
-      },
-
-      web_search_engine = {
-        provider = "tavily",
-      },
-
-      hints = { enabled = false },
-
-      -- behaviour = {
-      --   auto_suggestions = true, -- Experimental stage
-      -- },
-      -- suggestion = {
-      --   debounce = 600,
-      --   throttle = 600,
-      -- },
-
-      -- File selector configuration
-      --- @alias FileSelectorProvider "native" | "fzf" | "mini.pick" | "snacks" | "telescope" | string
-      file_selector = {
-        provider = "snacks", -- Avoid native provider issues
-        provider_opts = {},
-      },
-    },
-    build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
-  },
-  {
-    "saghen/blink.cmp",
-    lazy = true,
-    dependencies = { "saghen/blink.compat" },
-    opts = {
-      sources = {
-        default = { "avante_commands", "avante_mentions", "avante_files" },
-        compat = {
-          "avante_commands",
-          "avante_mentions",
-          "avante_files",
-        },
-        -- LSP score_offset is typically 60
-        providers = {
-          avante_commands = {
-            name = "avante_commands",
-            module = "blink.compat.source",
-            score_offset = 90,
-            opts = {},
-          },
-          avante_files = {
-            name = "avante_files",
-            module = "blink.compat.source",
-            score_offset = 100,
-            opts = {},
-          },
-          avante_mentions = {
-            name = "avante_mentions",
-            module = "blink.compat.source",
-            score_offset = 1000,
-            opts = {},
-          },
-        },
-      },
-    },
-  },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    optional = true,
-    ft = function(_, ft)
-      vim.list_extend(ft, { "Avante" })
-    end,
-    opts = function(_, opts)
-      opts.file_types = vim.list_extend(opts.file_types or {}, { "Avante" })
-    end,
-  },
-  {
-    "folke/which-key.nvim",
-    optional = true,
-    opts = {
-      spec = {
-        { "<leader>a", group = "ai" },
-      },
-    },
-  },
+  -- {
+  --   "yetone/avante.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "stevearc/dressing.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  --   opts = {
+  --     mode = "legacy",
+  --     -- mode = "agentic",
+  --     ---@alias AvanteProvider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+  --     provider = "claude",
+  --     -- provider = "gemini",
+  --     auto_suggestions_provider = nil,
+  --     -- auto_suggestions_provider = "gemini",
+  --     -- auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+  --
+  --     -- disabled_tools = {
+  --     --   "replace_in_file",
+  --     -- },
+  --
+  --     providers = {
+  --       claude = {
+  --         endpoint = "https://api.anthropic.com",
+  --         -- model = "claude-3-5-sonnet-20241022",
+  --         -- model = "claude-3-7-sonnet-20250219",
+  --         model = "claude-sonnet-4-20250514",
+  --         extra_request_body = {
+  --           temperature = 0,
+  --           -- max_tokens = 8192,
+  --           max_tokens = 64000,
+  --           thinking = {
+  --             type = "disabled",
+  --           },
+  --         },
+  --       },
+  --
+  --       gemini = {
+  --         model = "gemini-2.5-pro-preview-03-25",
+  --         extra_request_body = {
+  --           max_tokens = 65536,
+  --           generationConfig = {
+  --             thinkingConfig = {
+  --               includeThoughts = false,
+  --               thinkingBudget = 0,
+  --             },
+  --           },
+  --         },
+  --       },
+  --
+  --       groq = {
+  --         __inherited_from = "openai",
+  --         api_key_name = "GROQ_API_KEY",
+  --         endpoint = "https://api.groq.com/openai/v1/",
+  --         -- model = "qwen-2.5-coder-32b",
+  --         model = "llama-3.3-70b-versatile",
+  --         disable_tools = true,
+  --         extra_request_body = {
+  --           max_tokens = 32768, -- 8192,
+  --         },
+  --       },
+  --     },
+  --
+  --     behaviour = {
+  --       enable_token_counting = true,
+  --       minimize_diff = true,
+  --     },
+  --
+  --     web_search_engine = {
+  --       provider = "tavily",
+  --     },
+  --
+  --     hints = { enabled = false },
+  --
+  --     -- behaviour = {
+  --     --   auto_suggestions = true, -- Experimental stage
+  --     -- },
+  --     -- suggestion = {
+  --     --   debounce = 600,
+  --     --   throttle = 600,
+  --     -- },
+  --
+  --     -- File selector configuration
+  --     --- @alias FileSelectorProvider "native" | "fzf" | "mini.pick" | "snacks" | "telescope" | string
+  --     file_selector = {
+  --       provider = "snacks", -- Avoid native provider issues
+  --       provider_opts = {},
+  --     },
+  --   },
+  --   build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
+  -- },
+  -- {
+  --   "saghen/blink.cmp",
+  --   lazy = true,
+  --   dependencies = { "saghen/blink.compat" },
+  --   opts = {
+  --     sources = {
+  --       default = { "avante_commands", "avante_mentions", "avante_files" },
+  --       compat = {
+  --         "avante_commands",
+  --         "avante_mentions",
+  --         "avante_files",
+  --       },
+  --       -- LSP score_offset is typically 60
+  --       providers = {
+  --         avante_commands = {
+  --           name = "avante_commands",
+  --           module = "blink.compat.source",
+  --           score_offset = 90,
+  --           opts = {},
+  --         },
+  --         avante_files = {
+  --           name = "avante_files",
+  --           module = "blink.compat.source",
+  --           score_offset = 100,
+  --           opts = {},
+  --         },
+  --         avante_mentions = {
+  --           name = "avante_mentions",
+  --           module = "blink.compat.source",
+  --           score_offset = 1000,
+  --           opts = {},
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "MeanderingProgrammer/render-markdown.nvim",
+  --   optional = true,
+  --   ft = function(_, ft)
+  --     vim.list_extend(ft, { "Avante" })
+  --   end,
+  --   opts = function(_, opts)
+  --     opts.file_types = vim.list_extend(opts.file_types or {}, { "Avante" })
+  --   end,
+  -- },
+  -- {
+  --   "folke/which-key.nvim",
+  --   optional = true,
+  --   opts = {
+  --     spec = {
+  --       { "<leader>a", group = "ai" },
+  --     },
+  --   },
+  -- },
 }
