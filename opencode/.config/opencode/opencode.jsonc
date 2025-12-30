@@ -1,13 +1,27 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "tokyonight",
-  "model": "anthropic/claude-sonnet-4-20250514",
+  "model": "anthropic/claude-sonnet-4-5-20250929",
   "autoshare": false,
   "autoupdate": true,
 
+  // "provider": {
+  //   "anthropic": {
+  //     "models": {
+  //       "claude-sonnet-4-5-20250929": {
+  //         "options": {
+  //           "thinking": {
+  //             "type": "enabled",
+  //             "budgetTokens": 16000,
+  //           },
+  //         },
+  //       },
+  //     },
+  //   },
+  // },
+
   "keybinds": {
     "leader": "ctrl+space",
-    "app_help": "<leader>h",
     "editor_open": "<leader>e",
     "session_new": "<leader>n",
     "session_list": "<leader>l",
@@ -17,7 +31,6 @@
     "tool_details": "<leader>d",
     "model_list": "<leader>m",
     "theme_list": "<leader>t",
-    "project_init": "<leader>i",
     "input_clear": "ctrl+c",
     "input_paste": "ctrl+v",
     "input_submit": "enter",
@@ -26,10 +39,18 @@
     "messages_page_down": "pgdown",
     "messages_half_page_up": "ctrl+shift+u",
     "messages_half_page_down": "ctrl+shift+d",
-    "messages_previous": "ctrl+p",
-    "messages_next": "ctrl+n",
     "messages_first": "ctrl+g",
     "messages_last": "ctrl+alt+g",
-    "app_exit": "<leader>q"
-  }
+    "app_exit": "<leader>q",
+  },
+
+  "agent": {
+    "build": {
+      // "model": "anthropic/claude-sonnet-4-5-20250929",
+      "model": "anthropic/claude-opus-4-5-20251101",
+    },
+    "plan": {
+      "model": "anthropic/claude-opus-4-5-20251101",
+    },
+  },
 }
