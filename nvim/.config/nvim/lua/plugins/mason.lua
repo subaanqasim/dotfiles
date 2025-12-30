@@ -19,6 +19,7 @@ return {
         "prisma-language-server",
         "rust-analyzer",
         "buf-language-server",
+        "tsgo",
       })
     end,
   },
