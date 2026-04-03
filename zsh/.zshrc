@@ -121,10 +121,6 @@ source $(brew --prefix)/etc/bash_completion.d/az
 # https://starship.rs/
 eval "$(starship init zsh)"
 
-# pnpm
-export PNPM_HOME="/Users/subaanqasim/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
 
 
 ### Added by Zinit's installer
@@ -194,10 +190,12 @@ zinit wait lucid light-mode for lukechilds/zsh-nvm
 
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 # export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
-export PATH="/Users/subaanqasim/.cargo/bin":$PATH
+export PATH="/Users/subaanqasim/.cargo/bin:$PATH"
 export PATH="$PATH:/Users/subaanqasim/.local/bin"
 . "/Users/subaanqasim/.acme.sh/acme.sh.env"
 export PATH=$PATH:$HOME/go/bin
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 # Created by `pipx` on 2024-04-19 13:51:30

@@ -1,56 +1,34 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "tokyonight",
   "model": "anthropic/claude-sonnet-4-5-20250929",
   "autoshare": false,
   "autoupdate": true,
 
-  // "provider": {
-  //   "anthropic": {
-  //     "models": {
-  //       "claude-sonnet-4-5-20250929": {
-  //         "options": {
-  //           "thinking": {
-  //             "type": "enabled",
-  //             "budgetTokens": 16000,
-  //           },
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
-
-  "keybinds": {
-    "leader": "ctrl+space",
-    "editor_open": "<leader>e",
-    "session_new": "<leader>n",
-    "session_list": "<leader>l",
-    "session_share": "<leader>s",
-    "session_interrupt": "esc",
-    "session_compact": "<leader>c",
-    "tool_details": "<leader>d",
-    "model_list": "<leader>m",
-    "theme_list": "<leader>t",
-    "input_clear": "ctrl+c",
-    "input_paste": "ctrl+v",
-    "input_submit": "enter",
-    "input_newline": "shift+enter,ctrl+j",
-    "messages_page_up": "pgup",
-    "messages_page_down": "pgdown",
-    "messages_half_page_up": "ctrl+shift+u",
-    "messages_half_page_down": "ctrl+shift+d",
-    "messages_first": "ctrl+g",
-    "messages_last": "ctrl+alt+g",
-    "app_exit": "<leader>q",
-  },
-
   "agent": {
     "build": {
       // "model": "anthropic/claude-sonnet-4-5-20250929",
-      "model": "anthropic/claude-opus-4-5-20251101",
+      "model": "anthropic/claude-opus-4-6-1m",
     },
     "plan": {
-      "model": "anthropic/claude-opus-4-5-20251101",
+      "model": "anthropic/claude-opus-4-6-1m",
+    },
+  },
+
+  "provider": {
+    "anthropic": {
+      "models": {
+        "claude-opus-4-6-1m": {
+          "id": "claude-opus-4-6",
+          "name": "Claude Opus 4.6 [1M]",
+          "headers": {
+            "anthropic-beta": "context-1m-2025-08-07",
+          },
+          "limit": {
+            "context": 1000000,
+            "output": 128000,
+          },
+        },
+      },
     },
   },
 }
