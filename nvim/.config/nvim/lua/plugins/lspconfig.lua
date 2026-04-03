@@ -10,8 +10,8 @@ return {
         enabled = false,
       },
       servers = {
-        biome = {},
-        prismals = {},
+        -- biome = {},
+        -- prismals = {},
         tailwindcss = {
           -- settings = {
           -- flags = {
@@ -22,37 +22,37 @@ return {
         },
         bufls = {},
         gh_actions_ls = {},
-        eslint = {
-          -- cmd = { "eslint_d", "start", "--stdio" },
-          settings = {
-            workingDirectories = {
-              -- mode = "location",
-              mode = "auto",
-            },
-            -- root_dir = lspconfig.util.root_pattern(".git", "package.json", "tsconfig.json"),
-            flags = {
-              allow_incremental_sync = false,
-              debounce_text_changes = 1000,
-            },
-            -- flags = os.getenv("DEBOUNCE_ESLINT") and {
-            --   allow_incremental_sync = false,
-            --   debounce_text_changes = 1000,
-            -- } or nil,
-          },
-        },
+        -- eslint = {
+        --   -- cmd = { "eslint_d", "start", "--stdio" },
+        --   settings = {
+        --     workingDirectories = {
+        --       -- mode = "location",
+        --       mode = "auto",
+        --     },
+        --     -- root_dir = lspconfig.util.root_pattern(".git", "package.json", "tsconfig.json"),
+        --     flags = {
+        --       allow_incremental_sync = false,
+        --       debounce_text_changes = 1000,
+        --     },
+        --     -- flags = os.getenv("DEBOUNCE_ESLINT") and {
+        --     --   allow_incremental_sync = false,
+        --     --   debounce_text_changes = 1000,
+        --     -- } or nil,
+        --   },
+        -- },
 
         tsserver = { enabled = false },
         vtsls = { enabled = false },
         tsgo = {
-          cmd = { "tsgo", "--lsp", "--stdio" },
-          filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-          },
+          --   cmd = { "tsgo", "--lsp", "--stdio" },
+          --   filetypes = {
+          --     "javascript",
+          --     "javascriptreact",
+          --     "javascript.jsx",
+          --     "typescript",
+          --     "typescriptreact",
+          --     "typescript.tsx",
+          --   },
           root_markers = {
             "tsconfig.json",
             "jsconfig.json",
