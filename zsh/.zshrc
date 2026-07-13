@@ -196,6 +196,7 @@ export PATH="$PATH:/Users/subaanqasim/.local/bin"
 export PATH=$PATH:$HOME/go/bin
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH=/Users/subaanqasim/.opencode/bin:$PATH
 
 
 # Created by `pipx` on 2024-04-19 13:51:30
@@ -207,6 +208,7 @@ export ANTHROPIC_API_KEY=$(pass show anthropic/api-key)
 export TAVILY_API_KEY=$(pass show tavily/api-key)
 export GROQ_API_KEY=$(pass show groq/api-key-menza)
 export GEMINI_API_KEY=$(pass show gemini/api-key-menza)
+export SCHEMATIC_API_KEY=$(pass show schematic/api-key)
 
-# opencode
-export PATH=/Users/subaanqasim/.opencode/bin:$PATH
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

@@ -4,6 +4,11 @@ local act = wezterm.action
 local mux = wezterm.mux
 -- local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
+-- resurrect.wezterm: save/restore workspaces, windows and panes across mux restarts.
+-- The repo is archived but pinned at v1.0.0 and works on current wezterm; if you ever
+-- want a maintained fork, just swap the URL below — the module API is identical.
+local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
+
 wezterm.on("update-status", function(window)
 	window:set_right_status(window:active_workspace())
 end)
@@ -13,6 +18,27 @@ wezterm.on("gui-startup", function()
 
 	window:set_workspace("default")
 	-- window:gui_window():maximize()
+end)
+
+-- OPTIONAL auto-restore on startup.
+-- With your persistent (launchd-managed) mux this is usually NOT what you want: the mux
+-- is already populated when you open the GUI, so restoring here would duplicate windows.
+-- Prefer manual restore with ALT+r. If you want automatic restore only after a *fresh*
+-- mux boots (e.g. after a reboot), bind it to mux-startup instead of gui-startup:
+--
+-- wezterm.on("mux-startup", resurrect.state_manager.resurrect_on_gui_startup)
+
+wezterm.on("user-var-changed", function(window, pane, name, value)
+	if name ~= "switch-workspace" then
+		return
+	end
+
+	for _, workspace in ipairs(mux.get_workspace_names()) do
+		if workspace == value then
+			window:perform_action(act.SwitchToWorkspace({ name = value }), pane)
+			return
+		end
+	end
 end)
 
 -- In newer versions of wezterm, use the config_builder which will
@@ -27,6 +53,8 @@ config.unix_domains = {
 
 config.default_gui_startup_args = { "connect", "unix" }
 config.term = "wezterm"
+config.send_composed_key_when_left_alt_is_pressed = true
+config.send_composed_key_when_right_alt_is_pressed = true
 
 -- wezterm.gui is not available to the mux server, so take care to
 -- do something reasonable when this config is evaluated by the mux
@@ -81,13 +109,63 @@ local function is_vim(pane)
 	return pane:get_user_vars().IS_NVIM == "true"
 end
 
--- local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
--- resurrect.state_manager.periodic_save({
--- 	interval_seconds = 15 * 60,
--- 	save_workspaces = true,
--- 	save_windows = true,
--- 	save_tabs = true,
--- })
+-- ============================================================================
+-- resurrect.wezterm setup
+-- ============================================================================
+
+-- Encrypt saved state (recommended: state includes shell output and may contain secrets).
+-- One-time setup:
+--   brew install age
+--   mkdir -p ~/.config/wezterm
+--   age-keygen -o ~/.resurrect-key.txt
+-- The public key is read automatically from that file, so there's nothing else to paste.
+-- Until the key exists, state is saved UNENCRYPTED (a warning is logged).
+local resurrect_key = wezterm.home_dir .. "/.resurrect-key.txt"
+
+local function resurrect_age_pubkey()
+	local f = io.open(resurrect_key, "r")
+	if not f then
+		return nil
+	end
+	local data = f:read("*a")
+	f:close()
+	-- age-keygen writes a "# public key: age1..." comment line into the key file
+	return data:match("public key:%s*(age1%w+)")
+end
+
+local age_pubkey = resurrect_age_pubkey()
+if age_pubkey then
+	resurrect.state_manager.set_encryption({
+		enable = true,
+		-- absolute path: macOS GUI apps don't inherit your shell PATH.
+		-- On an Intel Mac this is /usr/local/bin/age instead.
+		method = "/opt/homebrew/bin/age",
+		private_key = resurrect_key,
+		public_key = age_pubkey,
+	})
+else
+	wezterm.log_warn(
+		"resurrect: no key at " .. resurrect_key .. " — state will be saved UNENCRYPTED until you run age-keygen"
+	)
+end
+
+-- Cap saved scrollback per pane (faster save/load, less sensitive data written to disk).
+resurrect.state_manager.set_max_nlines(1000)
+
+-- Autosave every 15 minutes so a crash/reboot costs at most ~15 min of layout drift.
+resurrect.state_manager.periodic_save({
+	interval_seconds = 15 * 60,
+	save_workspaces = true,
+	save_windows = true,
+	save_tabs = true,
+})
+
+-- Surface resurrect failures in the debug overlay (Ctrl+Shift+L) rather than failing silently.
+wezterm.on("resurrect.error", function(err)
+	wezterm.log_error("resurrect error: " .. tostring(err))
+end)
+
+-- ============================================================================
 
 local direction_keys = {
 	h = "Left",
@@ -127,6 +205,11 @@ config.keys = {
 	smart_split_nav("move", "j"),
 	smart_split_nav("move", "k"),
 	smart_split_nav("move", "l"),
+	{
+		key = "l",
+		mods = "CTRL|SHIFT",
+		action = act.SendKey({ key = "l", mods = "CTRL" }),
+	},
 	-- resize panes
 	-- smart_split_nav("resize", "LeftArrow"),
 	-- smart_split_nav("resize", "DownArrow"),
@@ -174,32 +257,57 @@ config.keys = {
 			flags = "FUZZY|WORKSPACES",
 		}),
 	},
-	-- {
-	-- 	key = "9",
-	-- 	mods = "ALT",
-	-- 	action = wezterm.action_callback(function(win, pane)
-	-- 		resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, label)
-	-- 			local type = string.match(id, "^([^/]+)") -- match before '/'
-	-- 			id = string.match(id, "([^/]+)$") -- match after '/'
-	-- 			id = string.match(id, "(.+)%..+$") -- remove file extention
-	-- 			local opts = {
-	-- 				relative = true,
-	-- 				restore_text = true,
-	-- 				on_pane_restore = resurrect.tab_state.default_on_pane_restore,
-	-- 			}
-	-- 			if type == "workspace" then
-	-- 				local state = resurrect.state_manager.load_state(id, "workspace")
-	-- 				resurrect.workspace_state.restore_workspace(state, opts)
-	-- 			elseif type == "window" then
-	-- 				local state = resurrect.state_manager.load_state(id, "window")
-	-- 				resurrect.window_state.restore_window(pane:window(), state, opts)
-	-- 			elseif type == "tab" then
-	-- 				local state = resurrect.state_manager.load_state(id, "tab")
-	-- 				resurrect.tab_state.restore_tab(pane:tab(), state, opts)
-	-- 			end
-	-- 		end)
-	-- 	end),
-	-- },
+	-- resurrect.wezterm: save the current workspace state
+	{
+		key = "s",
+		mods = "CTRL|ALT|SHIFT",
+		action = wezterm.action_callback(function(win, pane)
+			resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
+			win:toast_notification("WezTerm", "Workspace state saved", nil, 2000)
+		end),
+	},
+	-- resurrect.wezterm: load a saved workspace/window/tab state via fuzzy finder
+	{
+		key = "r",
+		mods = "CTRL|ALT",
+		action = wezterm.action_callback(function(win, pane)
+			resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, label)
+				local type = string.match(id, "^([^/]+)") -- match before '/'
+				id = string.match(id, "([^/]+)$") -- match after '/'
+				id = string.match(id, "(.+)%..+$") -- remove file extension
+				local opts = {
+					relative = true,
+					restore_text = true,
+					on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+				}
+				if type == "workspace" then
+					local state = resurrect.state_manager.load_state(id, "workspace")
+					resurrect.workspace_state.restore_workspace(state, opts)
+				elseif type == "window" then
+					local state = resurrect.state_manager.load_state(id, "window")
+					resurrect.window_state.restore_window(pane:window(), state, opts)
+				elseif type == "tab" then
+					local state = resurrect.state_manager.load_state(id, "tab")
+					resurrect.tab_state.restore_tab(pane:tab(), state, opts)
+				end
+			end)
+		end),
+	},
+	-- resurrect.wezterm: delete a saved state via fuzzy finder
+	{
+		key = "x",
+		mods = "CTRL|ALT",
+		action = wezterm.action_callback(function(win, pane)
+			resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id)
+				resurrect.state_manager.delete_state(id)
+			end, {
+				title = "Delete State",
+				description = "Select State to Delete and press Enter = accept, Esc = cancel, / = filter",
+				fuzzy_description = "Search State to Delete: ",
+				is_fuzzy = true,
+			})
+		end),
+	},
 	{
 		key = "-",
 		mods = "ALT",

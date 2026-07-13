@@ -10,7 +10,7 @@ return {
         enabled = false,
       },
       servers = {
-        -- biome = {},
+        biome = {},
         -- prismals = {},
         tailwindcss = {
           -- settings = {
