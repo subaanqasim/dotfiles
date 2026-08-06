@@ -209,6 +209,7 @@ export TAVILY_API_KEY=$(pass show tavily/api-key)
 export GROQ_API_KEY=$(pass show groq/api-key-menza)
 export GEMINI_API_KEY=$(pass show gemini/api-key-menza)
 export SCHEMATIC_API_KEY=$(pass show schematic/api-key)
+export SCHEMATIC_API_KEY_PROD=$(pass show schematic/api-key-prod)
 
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

@@ -23,7 +23,22 @@
         "SCHEMATIC_API_KEY": "{env:SCHEMATIC_API_KEY}",
       },
     },
+    "schematic-prod": {
+      "type": "local",
+      "enabled": false,
+      "command": ["npx", "-y", "@schematichq/schematic-mcp"],
+      "environment": {
+        "SCHEMATIC_API_KEY": "{env:SCHEMATIC_API_KEY_PROD}",
+      },
+    },
+    "posthog": {
+      "type": "remote",
+      "enabled": false,
+      "url": "https://mcp.posthog.com/mcp",
+    },
   },
+
+  "plugin": ["opencode-chrome-devtools"],
 
   "lsp": true,
 
