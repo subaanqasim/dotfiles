@@ -1,0 +1,57 @@
+# Create a wezterm workspace for every project.
+# Don't cd the invoking shell -- the new wezterm workspace handles navigation
+[switch]
+cd = false
+
+# On switch: only switch if the worktree and wezterm workspace already exist
+[pre-switch]
+wezterm = """
+W={{ worktree_path }}
+WS={{ repo }}.{{ branch | sanitize }}
+if [ -d "$W" ] && wezterm cli list --format json | jq -e --arg ws "$WS" 'any(.[]; .workspace == $ws)' >/dev/null; then
+  ENCODED_WORKSPACE=$(printf %s "$WS" | base64 | tr -d '\n')
+  printf "\\033]1337;SetUserVar=%s=%s\\007" switch-workspace "$ENCODED_WORKSPACE"
+fi
+"""
+
+# Create the wezterm layout in the background when missing.
+# Window 1 (shell): single pane at repo root
+# Window 2 (dev): 3-pane layout, all at repo root:
+#   ┌──────────────────┬──────────────────┐
+#   │                  │       root       │
+#   │       root       ├──────────────────┤
+#   │                  │       root       │
+#   └──────────────────┴──────────────────┘
+[post-switch]
+wezterm = """
+W={{ worktree_path }}
+WS={{ repo }}.{{ branch | sanitize }}
+
+if [ ! -d "$W" ] || wezterm cli list --format json | jq -e --arg ws "$WS" 'any(.[]; .workspace == $ws)' >/dev/null; then
+  exit 0
+fi
+
+# Window 1: single pane at repo root (creates the workspace)
+PANE_SINGLE=$(wezterm cli spawn --new-window --workspace "$WS" --cwd "$W")
+
+# Window 2 left pane: repo root
+PANE_LEFT=$(wezterm cli spawn --new-window --workspace "$WS" --cwd "$W")
+
+# Right pane: repo root
+PANE_RIGHT=$(wezterm cli split-pane --pane-id "$PANE_LEFT" --right --cwd "$W")
+
+# Bottom-right pane: repo root
+wezterm cli split-pane --pane-id "$PANE_RIGHT" --bottom --cwd "$W"
+
+# Focus the shell window
+wezterm cli activate-pane --pane-id "$PANE_SINGLE"
+"""
+
+# On remove: close all windows belonging to the workspace
+[pre-remove]
+wezterm = """
+WS={{ repo }}.{{ branch | sanitize }}
+wezterm cli list --format json | jq -r --arg ws "$WS" '.[] | select(.workspace == $ws) | .pane_id' | while read pid; do
+  wezterm cli kill-pane --pane-id "$pid" 2>/dev/null || true
+done
+"""

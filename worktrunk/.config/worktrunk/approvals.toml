@@ -1,0 +1,13 @@
+[projects."github.com/menzaai/menza"]
+approved-commands = [
+    "wt step copy-ignored",
+    "pnpm install",
+    'pnpm --filter=\!@menza/app --filter=\!@menza/web run build',
+    "pnpm sst install",
+]
+
+[projects."github.com/subaanqasim/sunnah-stories"]
+approved-commands = [
+    "wt step copy-ignored",
+    "bun install",
+]
