@@ -21,6 +21,11 @@
       "enabled": false,
       "url": "https://mcp.posthog.com/mcp",
     },
+    "railway": {
+      "type": "local",
+      "enabled": false,
+      "command": ["railway", "mcp"],
+    },
     "web-search": {
       "type": "remote",
       "enabled": true,
