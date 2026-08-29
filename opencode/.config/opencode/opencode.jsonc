@@ -33,7 +33,7 @@
     },
   },
 
-  "plugin": ["opencode-chrome-devtools"],
+  // "plugin": ["opencode-chrome-devtools"],
 
   "lsp": true,
 
