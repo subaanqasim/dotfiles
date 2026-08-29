@@ -4,10 +4,8 @@ local act = wezterm.action
 local mux = wezterm.mux
 -- local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
--- resurrect.wezterm: save/restore workspaces, windows and panes across mux restarts.
--- The repo is archived but pinned at v1.0.0 and works on current wezterm; if you ever
--- want a maintained fork, just swap the URL below — the module API is identical.
-local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
+-- Save and restore workspace layouts across mux restarts.
+local resurrect = wezterm.plugin.require("https://github.com/subaanqasim/resurrect.wezterm")
 
 wezterm.on("update-status", function(window)
 	window:set_right_status(window:active_workspace())
@@ -19,14 +17,6 @@ wezterm.on("gui-startup", function()
 	window:set_workspace("default")
 	-- window:gui_window():maximize()
 end)
-
--- OPTIONAL auto-restore on startup.
--- With your persistent (launchd-managed) mux this is usually NOT what you want: the mux
--- is already populated when you open the GUI, so restoring here would duplicate windows.
--- Prefer manual restore with ALT+r. If you want automatic restore only after a *fresh*
--- mux boots (e.g. after a reboot), bind it to mux-startup instead of gui-startup:
---
--- wezterm.on("mux-startup", resurrect.state_manager.resurrect_on_gui_startup)
 
 wezterm.on("user-var-changed", function(window, pane, name, value)
 	if name ~= "switch-workspace" then
@@ -152,12 +142,15 @@ end
 -- Cap saved scrollback per pane (faster save/load, less sensitive data written to disk).
 resurrect.state_manager.set_max_nlines(1000)
 
--- Autosave every 15 minutes so a crash/reboot costs at most ~15 min of layout drift.
-resurrect.state_manager.periodic_save({
-	interval_seconds = 15 * 60,
+resurrect.setup(config, {
+	periodic_interval = 5 * 60,
 	save_workspaces = true,
-	save_windows = true,
-	save_tabs = true,
+	save_windows = false,
+	save_tabs = false,
+	save_on_focus_loss = true,
+	startup_restore = false,
+	keybindings = false,
+	status_bar = false,
 })
 
 -- Surface resurrect failures in the debug overlay (Ctrl+Shift+L) rather than failing silently.
@@ -261,52 +254,19 @@ config.keys = {
 	{
 		key = "s",
 		mods = "CTRL|ALT|SHIFT",
-		action = wezterm.action_callback(function(win, pane)
-			resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
-			win:toast_notification("WezTerm", "Workspace state saved", nil, 2000)
-		end),
+		action = resurrect.workspace_state.save_workspace_action(),
 	},
-	-- resurrect.wezterm: load a saved workspace/window/tab state via fuzzy finder
+	-- resurrect.wezterm: load a saved state via fuzzy finder
 	{
 		key = "r",
 		mods = "CTRL|ALT",
-		action = wezterm.action_callback(function(win, pane)
-			resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, label)
-				local type = string.match(id, "^([^/]+)") -- match before '/'
-				id = string.match(id, "([^/]+)$") -- match after '/'
-				id = string.match(id, "(.+)%..+$") -- remove file extension
-				local opts = {
-					relative = true,
-					restore_text = true,
-					on_pane_restore = resurrect.tab_state.default_on_pane_restore,
-				}
-				if type == "workspace" then
-					local state = resurrect.state_manager.load_state(id, "workspace")
-					resurrect.workspace_state.restore_workspace(state, opts)
-				elseif type == "window" then
-					local state = resurrect.state_manager.load_state(id, "window")
-					resurrect.window_state.restore_window(pane:window(), state, opts)
-				elseif type == "tab" then
-					local state = resurrect.state_manager.load_state(id, "tab")
-					resurrect.tab_state.restore_tab(pane:tab(), state, opts)
-				end
-			end)
-		end),
+		action = resurrect.fuzzy_loader.restore_action(),
 	},
 	-- resurrect.wezterm: delete a saved state via fuzzy finder
 	{
 		key = "x",
 		mods = "CTRL|ALT",
-		action = wezterm.action_callback(function(win, pane)
-			resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id)
-				resurrect.state_manager.delete_state(id)
-			end, {
-				title = "Delete State",
-				description = "Select State to Delete and press Enter = accept, Esc = cancel, / = filter",
-				fuzzy_description = "Search State to Delete: ",
-				is_fuzzy = true,
-			})
-		end),
+		action = resurrect.fuzzy_loader.delete_action(),
 	},
 	{
 		key = "-",
