@@ -10,4 +10,5 @@ approved-commands = [
 approved-commands = [
     "wt step copy-ignored",
     "bun install",
+    "sh .config/setup-convex-worktree.sh dev/$USER-worktrunk/{{ branch | codename(2) }}",
 ]
