@@ -61,6 +61,16 @@
       "installedAt": "2026-08-20T15:12:07.942Z",
       "updatedAt": "2026-08-20T15:12:07.942Z"
     },
+    "grilling": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/grilling/SKILL.md",
+      "skillFolderHash": "f0732035b8b1b60ae39454e4191caef32fa91903",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-09-11T09:53:25.000Z",
+      "updatedAt": "2026-09-11T09:53:25.000Z"
+    },
     "improve-codebase-architecture": {
       "source": "mattpocock/skills",
       "sourceType": "github",
