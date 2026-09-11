@@ -10,7 +10,7 @@ return {
         enabled = false,
       },
       servers = {
-        biome = {},
+        -- biome = {},
         -- prismals = {},
         tailwindcss = {
           -- settings = {
@@ -43,25 +43,25 @@ return {
 
         tsserver = { enabled = false },
         vtsls = { enabled = false },
-        tsgo = {
-          --   cmd = { "tsgo", "--lsp", "--stdio" },
-          --   filetypes = {
-          --     "javascript",
-          --     "javascriptreact",
-          --     "javascript.jsx",
-          --     "typescript",
-          --     "typescriptreact",
-          --     "typescript.tsx",
-          --   },
-          root_markers = {
-            "tsconfig.json",
-            "jsconfig.json",
-            "package.json",
-            ".git",
-            "tsconfig.base.json",
-          },
-          enabled = true,
-        },
+        -- tsgo = {
+        --   --   cmd = { "tsgo", "--lsp", "--stdio" },
+        --   --   filetypes = {
+        --   --     "javascript",
+        --   --     "javascriptreact",
+        --   --     "javascript.jsx",
+        --   --     "typescript",
+        --   --     "typescriptreact",
+        --   --     "typescript.tsx",
+        --   --   },
+        --   root_markers = {
+        --     "tsconfig.json",
+        --     "jsconfig.json",
+        --     "package.json",
+        --     ".git",
+        --     "tsconfig.base.json",
+        --   },
+        --   enabled = true,
+        -- },
       },
 
       setup = {

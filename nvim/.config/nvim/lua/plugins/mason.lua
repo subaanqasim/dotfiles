@@ -4,9 +4,7 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "prettierd",
-        -- "eslint_d",
         "biome",
-        "typescript-language-server",
         "lua-language-server",
         "css-lsp",
         "html-lsp",
@@ -19,7 +17,7 @@ return {
         "prisma-language-server",
         "rust-analyzer",
         "buf-language-server",
-        "tsgo",
+        "tsc",
       })
     end,
   },
