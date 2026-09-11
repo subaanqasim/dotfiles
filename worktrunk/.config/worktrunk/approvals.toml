@@ -6,6 +6,12 @@ approved-commands = [
     "pnpm sst install",
 ]
 
+[projects."github.com/subaanqasim/subaanqasim"]
+approved-commands = [
+    "wt step copy-ignored",
+    "bun install",
+]
+
 [projects."github.com/subaanqasim/sunnah-stories"]
 approved-commands = [
     "wt step copy-ignored",
