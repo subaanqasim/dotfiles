@@ -33,7 +33,10 @@
     },
   },
 
-  // "plugin": ["opencode-chrome-devtools"],
+  "plugin": [
+    "opencode-wakelock",
+    // "opencode-chrome-devtools"
+  ],
 
   "lsp": true,
 
