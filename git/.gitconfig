@@ -11,10 +11,10 @@
 	gpgsign = true
 [credential "https://github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [core]
 	pager = less -F -X
 	; editor = code --wait --new-window
@@ -51,6 +51,10 @@ path = ~/.gitconfig-personal
 ; override personal ssh, gh auth etc. with work settings
 [includeIf "gitdir:~/Code/sina-health/**"]
 path = ~/.gitconfig-sinahealth
+
+; Machine-specific identity or employer overrides. Never commit this file.
+[include]
+path = ~/.gitconfig.local
 
 [alias]
 	pr = "!f() { exec az repos pr \"$@\"; }; f"

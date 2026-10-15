@@ -11,13 +11,6 @@ wezterm.on("update-status", function(window)
 	window:set_right_status(window:active_workspace())
 end)
 
-wezterm.on("gui-startup", function()
-	local tab, pane, window = mux.spawn_window({})
-
-	window:set_workspace("default")
-	-- window:gui_window():maximize()
-end)
-
 wezterm.on("user-var-changed", function(window, pane, name, value)
 	if name ~= "switch-workspace" then
 		return
@@ -34,6 +27,7 @@ end)
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 local config = wezterm.config_builder()
+-- config.front_end = "WebGpu"
 
 config.unix_domains = {
 	{

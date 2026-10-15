@@ -1,0 +1,12 @@
+{
+  "name": "opencode-wakelock-v2-local",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "opencode-wakelock": "0.2.3"
+  }
+}

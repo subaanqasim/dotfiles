@@ -1,0 +1,160 @@
+# rcmd configuration file
+# Edit this file to customise rcmd's behaviour. Changes are picked up within a few seconds.
+# Full settings reference: run `rcmd config help`
+
+# true: settings this file leaves out reset to defaults on every read
+overrideUserDefaults: false
+
+triggers:
+  triggerKeys: [rcmd]
+  windowTriggerKeys: []
+  stageTriggerKeys: [ralt]
+  secondTriggerGestures: [doubleTap]
+  enableAssignHotkey: true
+  enableHideOthersHotkey: false
+  assignKeyTriggerKeys: []
+  hideOnFocusTriggerKeys: []
+  alwaysHideOthers: false
+  doubleTapGapMs: 250
+  doubleTapMaxPressMs: 250
+
+# trigger + key → app
+appKeyAssignments:
+  a: {app: /Applications/ChatGPT.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+  b: {app: /Applications/Brave Browser.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleWindows}
+  c: {app: /Applications/Google Chrome.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleWindows}
+  d: {app: /Applications/TablePlus.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+  f: {app: /Applications/Figma.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+  g: {app: /Applications/Grok Bot.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+  l: {app: /Applications/Linear.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+  m: {app: /Applications/Beeper Desktop.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+  n: {app: /System/Applications/Notes.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+  o: {app: /Applications/OpenCode.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+  s: {app: /Applications/Spark.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+  t: {app: /Applications/WezTerm.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleWindows}
+  u: {app: /Applications/Notion Calendar.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+  w: {app: /Applications/WhatsApp.app, launchIfNotRunning: true, whenAlreadyFocusedAction: CycleApps}
+
+# app → letter → saved window
+windowKeyAssignments: {}
+
+stages: []
+
+# typed query → the app it always opens
+searchPins: {}
+
+appSwitcher:
+  showAppSwitcher: false
+  appSwitcherOSDDelay: 350
+  adaptiveFollowupGraceMs: 150
+  appSwitcherFeatures: [lastWindow, runningApps, launchableApps, bottomActions]
+  switcherScreenPlacement: {position: bottomRight, offsetX: 0, offsetY: 0}
+  osdSize: {width: 400, height: 600}
+  actionKeys: {hideKey: minus, actionKey: equal, exposeKey: period, enableHideAndActionKeys: true}
+  hideOnlyFocusedAppOnMinus: true
+  appSort: name
+  appSortReverse: false
+
+windowSwitcher:
+  windowSwitcherOSDDelay: 0
+  windowSwitcherAppearance: compact
+  osdLook:
+    density: compact
+    backgroundStyle:
+      glass: {opacity: 0}
+    accentColor: system
+    foregroundColor: adaptive
+    keycapColor: adaptive
+    keycapStyle: badge
+    searchBarStyle: glassy
+    cornerRadius: 14
+    appIconSize: 24
+    iconStyle: native
+    fontStyle: rounded
+    focusStyle: bar
+    rowSeparationStyle: none
+  windowSwitcherFeatures: [lastWindow, windows, windowActions, bottomActions]
+  windowSwitcherDimFocused: false
+  windowSwitcherPlacement: {mirrorAppSwitcher: true}
+  osdSize: {width: 480, height: 420}
+  actionKeys: {windowMinimizeKey: minus, windowAssignKey: equal, enableWindowMinimizeAndAssignKeys: true}
+  minimizeOnlyFocusedWindowOnMinus: true
+
+stageSwitcher: {actionKeys: {stageAssignKey: equal, stageCloseKey: minus, stageRepositionKey: section, stageCloseAction: close}, stageReopenClosedItems: true, showStageSwitcher: true}
+
+tabCycle:
+  enableTabCycle: true
+  tabCycleScope: auto
+  tabCycleSearchScope: allWindows
+  tabCycleInclude: [minimized, hidden]
+  hijackCommandTab: false
+  commandTabSwitcher: {left: apps, right: windows}
+  disableSystemCommandTabHotkey: false
+  stickyAppSwitcher: false
+  stickyAppSwitcherScope: rcmdOnly
+  windowCycleKey: grave
+  enableWindowCycleKey: true
+  hijackWindowCycleHotkey: true
+
+spaces: {spaceMode: single, createMissingSpaces: true, osdOnActiveSpaceOnly: false, enableInstantSpaceSwitching: true}
+
+general:
+  whenAlreadyFocusedAction: CycleWindows
+  focusBehaviour: allWindows
+  focusBehaviourSingle: allWindows
+  focusBehaviourMulti: sameSpaceWindow
+  focusOnKeyUp: false
+  activationMode: adaptive
+  searchMatchMode: anchored
+  osdDisplay: activeWindow
+  searchOptionalPrefixes:
+  - google
+  - microsoft
+  - adobe
+  - apple
+  - amazon
+  - affinity
+  - jetbrains
+  - nvidia
+  - parallels
+  - elgato
+  - logitech
+  - synology
+  - wondershare
+  - the
+  - 4k
+  - 8k
+  - 3d
+  showMenubarAppsInSearch: false
+  showLensItemsInSearch: true
+  lensRowCap: 30
+  lensFetchFavicons: true
+  enableQuickKeys: true
+  editorApp: ''
+  terminalApp: ''
+  enableStickySpaceSearch: true
+
+# bundle IDs rcmd never lists
+ignoredApps: [com.apple.MobileSMS, com.tinyapp.DBngin]
+
+# keys rcmd never takes
+ignoredKeys: ['"equal"', '"minus"']
+
+# bundle IDs where rcmd stops intercepting keys
+appsWhereRcmdIsPaused: []
+
+windowPatternGroups:
+- id: code-editors
+  name: Code editor project
+  bundleIDs: [com.microsoft.VSCode, com.microsoft.VSCodeInsiders, com.microsoft.VSCodiumInsiders, com.microsoft.VSCod, com.visualstudio.code, com.visualstudio.code.oss, com.sublimetext., com.todesktop.]
+  keyPattern: ''
+  titlePattern: "^.* \u2014 (.+)$"
+- {id: jetbrains, name: JetBrains IDEs, bundleIDs: [com.jetbrains.], keyPattern: '', titlePattern: "^(.+?)(?: \\[.+\\])? [\u2013\u2014] "}
+- {id: safari, name: Safari, bundleIDs: [com.apple.Safari], keyPattern: '', titlePattern: "^.+? \u2014 (.+)$"}
+- {id: xcode, name: Xcode, bundleIDs: [com.apple.dt.Xcode], keyPattern: '', titlePattern: "^(.+?) \u2014 "}
+- {id: custom-1, name: Custom patterns 1, bundleIDs: [com.sublimetext.2, com.sublimetext.3, com.sublimetext.4], keyPattern: ".* \u2014 [^\\w\\d]*(.)", titlePattern: "^.* \u2014 (.+)$"}
+
+windowKeyPatterns:
+- {id: com.sublimetext.2, pattern: ".* \u2014 [^\\w\\d]*(.)"}
+- {id: com.sublimetext.3, pattern: ".* \u2014 [^\\w\\d]*(.)"}
+- {id: com.sublimetext.4, pattern: ".* \u2014 [^\\w\\d]*(.)"}

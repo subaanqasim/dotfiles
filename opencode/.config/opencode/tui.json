@@ -1,0 +1,5 @@
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "theme": "tokyonight",
+  "keybinds": { "leader": "ctrl+space", "app_exit": "<leader>q" }
+}

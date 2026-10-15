@@ -1,0 +1,3 @@
+# Classic artifacts are retained for rollback, not linked on a new Mac.
+\.(png|plist)$
+\.DS_Store

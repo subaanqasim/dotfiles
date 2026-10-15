@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>allowWindowSwitcher</key>
+	<true/>
+	<key>appKeyAssignments</key>
+	<array>
+		<string>{"whenAlreadyFocusedAction":2,"key":"s","app":{"path":"\/Applications\/Spark.app","useCount":51,"originalName":"Spark","identifier":"com.readdle.smartemail-Mac:25779","switchCount":0},"index":0}</string>
+		<string>{"key":"b","app":{"switchCount":0,"originalName":"Brave Browser","path":"\/Applications\/Brave Browser.app","useCount":31,"identifier":"com.brave.Browser:1499"},"index":0,"whenAlreadyFocusedAction":3}</string>
+		<string>{"index":0,"key":"l","app":{"originalName":"Linear","switchCount":0,"path":"\/Applications\/Linear.app","identifier":"com.linear:45776","useCount":11},"whenAlreadyFocusedAction":2}</string>
+		<string>{"whenAlreadyFocusedAction":2,"key":"n","app":{"path":"\/System\/Applications\/Notes.app","useCount":70,"originalName":"Notes","identifier":"com.apple.Notes:68850","switchCount":0},"index":0}</string>
+		<string>{"key":"f","app":{"switchCount":0,"originalName":"Figma","path":"\/Applications\/Figma.app","useCount":7,"identifier":"com.figma.Desktop:67162"},"index":0,"whenAlreadyFocusedAction":2}</string>
+		<string>{"index":0,"key":"c","app":{"originalName":"Chrome","switchCount":0,"path":"\/Applications\/Google Chrome.app","identifier":"com.google.Chrome:25176","useCount":8312},"whenAlreadyFocusedAction":3}</string>
+		<string>{"whenAlreadyFocusedAction":2,"key":"d","app":{"path":"\/Applications\/TablePlus.app","useCount":1,"originalName":"TablePlus","identifier":"com.tinyapp.TablePlus:61781","switchCount":0},"index":0}</string>
+		<string>{"key":"u","app":{"switchCount":0,"originalName":"Notion Calendar","path":"\/Applications\/Notion Calendar.app","useCount":36,"identifier":"com.cron.electron:70256"},"index":0,"whenAlreadyFocusedAction":2}</string>
+		<string>{"index":0,"key":"t","app":{"originalName":"WezTerm","switchCount":0,"path":"\/Applications\/WezTerm.app","identifier":"com.github.wez.wezterm:3567","useCount":4},"whenAlreadyFocusedAction":3}</string>
+		<string>{"whenAlreadyFocusedAction":2,"key":"w","app":{"path":"\/Applications\/WhatsApp.app","useCount":0,"originalName":"‎WhatsApp","identifier":"net.whatsapp.WhatsApp:28538","switchCount":0},"index":0}</string>
+		<string>{"key":"m","app":{"switchCount":0,"originalName":"Beeper","path":"\/Applications\/Beeper Desktop.app","useCount":0,"identifier":"com.automattic.beeper.desktop:13396"},"index":0,"whenAlreadyFocusedAction":2}</string>
+		<string>{"index":0,"key":"a","app":{"originalName":"ChatGPT","switchCount":0,"path":"\/Applications\/ChatGPT.app","identifier":"com.openai.codex:77247","useCount":0},"whenAlreadyFocusedAction":2}</string>
+		<string>{"whenAlreadyFocusedAction":2,"key":"o","app":{"path":"\/Applications\/OpenCode.app","useCount":2,"originalName":"OpenCode","identifier":"ai.opencode.desktop:74770","switchCount":0},"index":0}</string>
+		<string>{"key":"g","app":{"switchCount":0,"originalName":"Grok Bot","path":"\/Applications\/Grok Bot.app","useCount":30,"identifier":"com.anysphere.sand:13066"},"index":0,"whenAlreadyFocusedAction":2}</string>
+	</array>
+	<key>appSort</key>
+	<string>name</string>
+	<key>appSortReverse</key>
+	<false/>
+	<key>appSwitcherFeatures</key>
+	<integer>2</integer>
+	<key>appSwitcherUseNumbersForWindows</key>
+	<true/>
+	<key>enableAssignHotkey</key>
+	<true/>
+	<key>enableCycleHotkey</key>
+	<false/>
+	<key>hideMenubarIcon</key>
+	<true/>
+	<key>hideOnlyFocusedAppOnMinus</key>
+	<true/>
+	<key>hideStaticSettings</key>
+	<false/>
+	<key>ignoredApps</key>
+	<array>
+		<string>com.tinyapp.DBngin</string>
+		<string>com.apple.MobileSMS</string>
+	</array>
+	<key>ignoredKeys</key>
+	<array>
+		<string>"equal"</string>
+		<string>"minus"</string>
+	</array>
+	<key>minimizeKey</key>
+	<integer>27</integer>
+	<key>showAppSwitcher</key>
+	<true/>
+	<key>showWindowSwitcher</key>
+	<true/>
+	<key>switcherScreenPlacement</key>
+	<string>1</string>
+	<key>triggerKeys</key>
+	<array>
+		<string>4</string>
+	</array>
+	<key>windowKeyAssignments</key>
+	<array/>
+	<key>windowKeyPatterns</key>
+	<array>
+		<string>{"id":"com.sublimetext.4","pattern":".* — [^\\w\\d]*(.)"}</string>
+		<string>{"id":"com.sublimetext.3","pattern":".* — [^\\w\\d]*(.)"}</string>
+		<string>{"id":"com.sublimetext.2","pattern":".* — [^\\w\\d]*(.)"}</string>
+	</array>
+	<key>windowSwitchOSDDelay</key>
+	<integer>350</integer>
+	<key>windowSwitcherAppearance</key>
+	<string>"compact"</string>
+	<key>zeroAsLastFocusedWindow</key>
+	<true/>
+</dict>
+</plist>

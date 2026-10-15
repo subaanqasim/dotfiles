@@ -17,12 +17,11 @@ alias lg="lazygit"
 alias nr="npm run"
 alias oc="opencode"
 
-hash -d nvim=/Users/subaanqasim/.config/nvim
-nvim="/Users/subaanqasim/.config/nvim"
+hash -d nvim="$HOME/.config/nvim"
+nvim="$HOME/.config/nvim"
 
-hash -d code=/Users/subaanqasim/Code
-code="/Users/subaanqasim/Code"
+hash -d code="$HOME/Code"
+code="$HOME/Code"
 
-hash -d dot=/Users/subaanqasim/Code/dotfiles
-dot="/Users/subaanqasim/Code/dotfiles"
-
+hash -d dot="${DOTFILES_ROOT:-$HOME/Code/dotfiles}"
+dot="${DOTFILES_ROOT:-$HOME/Code/dotfiles}"

@@ -1,0 +1,13 @@
+# Fresh-machine config. Desktop integrations and trust are set up locally.
+# The original codex/ package remains available but is not stowed by bootstrap.
+model = "gpt-6.1-sol"
+model_reasoning_effort = "xhigh"
+service_tier = "priority"
+web_search = "live"
+
+[mcp_servers.railway]
+command = "railway"
+args = ["mcp"]
+
+[mcp_servers.parallel-search]
+url = "https://search.parallel.ai/mcp"

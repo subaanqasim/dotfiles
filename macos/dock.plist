@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>autohide</key>
+	<true/>
+	<key>autohide-delay</key>
+	<real>0.0</real>
+	<key>autohide-time-modifier</key>
+	<integer>0</integer>
+	<key>largesize</key>
+	<real>128</real>
+	<key>mineffect</key>
+	<string>scale</string>
+	<key>minimize-to-application</key>
+	<true/>
+	<key>mru-spaces</key>
+	<false/>
+	<key>show-recents</key>
+	<false/>
+	<key>tilesize</key>
+	<real>46</real>
+	<key>wvous-bl-corner</key>
+	<integer>13</integer>
+	<key>wvous-bl-modifier</key>
+	<integer>0</integer>
+	<key>wvous-br-corner</key>
+	<integer>4</integer>
+	<key>wvous-br-modifier</key>
+	<integer>0</integer>
+	<key>wvous-tr-corner</key>
+	<integer>12</integer>
+	<key>wvous-tr-modifier</key>
+	<integer>0</integer>
+</dict>
+</plist>

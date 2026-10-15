@@ -1,5 +1,5 @@
-model = "gpt-6-astra"
-model_reasoning_effort = "high"
+model = "gpt-6.1-sol"
+model_reasoning_effort = "xhigh"
 notify = [
     "/Users/subaanqasim/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
     "turn-ended",
@@ -9,11 +9,12 @@ web_search = "live"
 
 [desktop]
 ambient-suggestions-enabled = false
-conversationDetailMode = "STEPS_COMMANDS"
+conversationDetailMode = "STEPS_PROSE"
 keepRemoteControlAwakeWhilePluggedIn = true
 followUpQueueMode = "queue"
 worktree-upstream-refresh-mode = "best-effort"
 git-pull-request-merge-method = "squash"
+preventSleepWhileRunning = true
 
 [features]
 js_repl = false
@@ -44,16 +45,16 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_n
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/subaanqasim/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 CODEX_HOME = "/Users/subaanqasim/.codex"
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab,mcpapps"
 BROWSER_USE_TINYSKY_ENABLED = "1"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.901.51231"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/subaanqasim/.codex/plugins/cache/openai-bundled/browser/26.901.51231/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.928.21956"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/subaanqasim/.codex/plugins/cache/openai-bundled/browser/26.928.21956/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/subaanqasim/.codex/computer-use/Codex Computer Use.app"
-CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 
 [mcp_servers.railway]
 command = "railway"
@@ -89,9 +90,6 @@ enabled = true
 [plugins."codex-app-tools@openai-bundled"]
 enabled = true
 
-[plugins."sites@openai-bundled"]
-enabled = true
-
 [plugins."unified-computer-use@openai-bundled"]
 enabled = true
 
@@ -102,6 +100,9 @@ enabled = true
 enabled = true
 
 [plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
 enabled = true
 
 [projects."/Users/subaanqasim/Code/menza/menza"]
@@ -123,6 +124,27 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/subaanqasim/Documents/Codex/2026-09-08/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/subaanqasim/.codex/worktrees/1f4d/sunnah-stories.main"]
+trust_level = "trusted"
+
+[projects."/Users/subaanqasim/Documents/Codex/2026-09-11/deb"]
+trust_level = "trusted"
+
+[projects."/Users/subaanqasim/.codex/worktrees/0b55/sunnah-stories.main"]
+trust_level = "trusted"
+
+[projects."/Users/subaanqasim/Documents/Codex/2026-09-12/i-am-filling-out-some-job"]
+trust_level = "trusted"
+
+[projects."/Users/subaanqasim/.codex/worktrees/2b6b/sunnah-stories.main"]
+trust_level = "trusted"
+
+[projects."/Users/subaanqasim/.codex/worktrees/2ca7/sunnah-stories.main"]
+trust_level = "trusted"
+
+[projects."/Users/subaanqasim/.codex/.chatgpt-projects/g-p-6aa67621555481919c017481f6cdd9fc"]
 trust_level = "trusted"
 
 [tui.model_availability_nux]

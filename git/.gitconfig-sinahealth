@@ -1,7 +1,7 @@
 [user]
 email = subaan@sinahealth.tech
 name = Subaan Qasim
-signingkey = /Users/subaanqasim/.ssh/subaan-sh
+signingkey = ~/.ssh/subaan-sh.pub
  
 [github]
 user = "subaan-sh"

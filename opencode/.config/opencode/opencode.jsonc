@@ -1,11 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
   // "model": "anthropic/claude-sonnet-4-5-20250929",
-  "autoshare": false,
-  "autoupdate": true,
+  "share": "manual",
+  "update": "auto",
   "formatter": true,
 
-  "agent": {
+  "agents": {
     // "build": {
     //   // "model": "anthropic/claude-sonnet-4-5-20250929",
     //   "model": "anthropic/claude-opus-4-6-1m",
@@ -16,35 +16,62 @@
   },
 
   "mcp": {
-    "posthog": {
-      "type": "remote",
-      "enabled": false,
-      "url": "https://mcp.posthog.com/mcp",
-    },
-    "railway": {
-      "type": "local",
-      "enabled": false,
-      "command": ["railway", "mcp"],
-    },
-    "web-search": {
-      "type": "remote",
-      "enabled": true,
-      "url": "https://search.parallel.ai/mcp",
+    "servers": {
+      "posthog": {
+        "type": "remote",
+        "disabled": true,
+        "url": "https://mcp.posthog.com/mcp",
+      },
+      "railway": {
+        "type": "local",
+        "disabled": true,
+        "command": ["railway", "mcp"],
+      },
+      "web-search": {
+        "type": "remote",
+        "disabled": false,
+        "url": "https://search.parallel.ai/mcp",
+      },
     },
   },
 
-  "plugin": [
-    "opencode-wakelock",
+  "plugins": [
+    "./plugins/wakelock",
     // "opencode-chrome-devtools"
   ],
 
   "lsp": true,
 
-  "provider": {
+  "providers": {
+    "openai": {
+      "models": {
+        "gpt-6-astra": {
+          "limit": {
+            "context": 1000000,
+            "input": 872000,
+            "output": 128000,
+          },
+        },
+        "gpt-6-astra-fast": {
+          "limit": {
+            "context": 1000000,
+            "input": 872000,
+            "output": 128000,
+          },
+        },
+        "gpt-6-astra-ultrafast": {
+          "limit": {
+            "context": 1000000,
+            "input": 872000,
+            "output": 128000,
+          },
+        },
+      },
+    },
     "anthropic": {
       "models": {
         "claude-opus-4-6-1m": {
-          "id": "claude-opus-4-6",
+          "modelID": "claude-opus-4-6",
           "name": "Claude Opus 4.6 [1M]",
           "headers": {
             "anthropic-beta": "context-1m-2025-08-07",
@@ -57,4 +84,5 @@
       },
     },
   },
+  "shell": "zsh",
 }
